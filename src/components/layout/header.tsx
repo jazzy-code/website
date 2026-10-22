@@ -18,7 +18,7 @@ export function Header() {
               <li key={key}>
                 <Link
                   href={href}
-                  className="text-muted transition-colors duration-200 hover:text-foreground"
+                  className="text-muted-foreground transition-colors duration-200 hover:text-foreground"
                 >
                   {t(key)}
                 </Link>

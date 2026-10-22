@@ -7,7 +7,7 @@ export function Wordmark() {
       href="/"
       className="font-display text-lg font-semibold tracking-tight text-foreground"
     >
-      Jazzy<span className="text-accent-soft">Code</span>
+      Jazzy<span className="text-brand-soft">Code</span>
     </Link>
   );
 }

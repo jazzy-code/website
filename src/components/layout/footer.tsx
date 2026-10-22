@@ -16,7 +16,7 @@ export function Footer() {
           <ul className="grid gap-2 text-sm">
             {navItems.map(({ key, href }) => (
               <li key={key}>
-                <Link href={href} className="text-muted hover:text-foreground">
+                <Link href={href} className="text-muted-foreground hover:text-foreground">
                   {nav(key)}
                 </Link>
               </li>
@@ -29,7 +29,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="text-accent-soft underline-offset-4 hover:underline"
+                  className="text-brand-soft underline-offset-4 hover:underline"
                 >
                   {t("email")}: {siteConfig.email}
                 </a>
@@ -41,7 +41,7 @@ export function Footer() {
                   href={`https://wa.me/${siteConfig.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent-soft underline-offset-4 hover:underline"
+                  className="text-brand-soft underline-offset-4 hover:underline"
                 >
                   {t("whatsapp")}
                 </a>
@@ -50,7 +50,7 @@ export function Footer() {
           </ul>
         )}
       </div>
-      <p className="border-t border-border px-4 py-4 text-center text-xs text-muted">
+      <p className="border-t border-border px-4 py-4 text-center text-xs text-muted-foreground">
         {t("rights", { year: new Date().getFullYear() })}
       </p>
     </footer>

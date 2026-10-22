@@ -28,8 +28,8 @@ export function LanguageSwitcher() {
                 className={
                   "block rounded-full px-3 py-1 font-medium uppercase transition-colors duration-200 " +
                   (active
-                    ? "bg-accent text-white"
-                    : "text-muted hover:text-foreground")
+                    ? "bg-brand text-white"
+                    : "text-muted-foreground hover:text-foreground")
                 }
               >
                 {code}

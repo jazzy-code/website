@@ -14,7 +14,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <h1 className="font-display text-5xl font-semibold tracking-tight sm:text-6xl">
         Jazzy Code
       </h1>
-      <p className="mt-4 text-lg text-muted">{t("placeholder")}</p>
+      <p className="mt-4 text-lg text-muted-foreground">{t("placeholder")}</p>
     </section>
   );
 }

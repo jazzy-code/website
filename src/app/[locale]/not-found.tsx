@@ -7,10 +7,10 @@ export default function NotFound() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
       <h1 className="font-display text-4xl font-semibold">{t("title")}</h1>
-      <p className="mt-4 text-muted">{t("description")}</p>
+      <p className="mt-4 text-muted-foreground">{t("description")}</p>
       <Link
         href="/"
-        className="mt-8 inline-block text-accent-soft underline-offset-4 hover:underline"
+        className="mt-8 inline-block text-brand-soft underline-offset-4 hover:underline"
       >
         {t("back")}
       </Link>
