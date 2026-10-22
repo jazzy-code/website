@@ -1,6 +1,5 @@
 import { ArrowLeftIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -8,6 +7,8 @@ import { Container } from "@/components/site/container";
 import { ProjectMedia } from "@/components/site/project-media";
 import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
+import { Screenshot } from "@/components/site/screenshot";
+import { TagSection } from "@/components/site/tag-section";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
@@ -48,9 +49,23 @@ export default async function ProjectPage({
 
   const t = await getTranslations("Projects");
   const { project, index, previous, next } = found;
-  const { description, contributions, technologies, url, gallery } = project;
+  const {
+    description,
+    features,
+    metrics,
+    technologies,
+    infrastructure,
+    links,
+    screens,
+  } = project;
+  // The first screen is the cover; the rest form the gallery.
+  const [cover, ...gallery] = screens;
   const hasDetails = Boolean(
-    description || contributions?.length || technologies?.length,
+    description ||
+      features?.length ||
+      metrics.length ||
+      technologies?.length ||
+      infrastructure?.length,
   );
 
   return (
@@ -70,13 +85,18 @@ export default async function ProjectPage({
         description={project.summary}
       />
 
-      <div className="surface group mt-10 overflow-hidden">
-        <ProjectMedia
-          name={project.name}
-          image={project.cover}
-          sizes="(min-width: 1152px) 1104px, 100vw"
-          priority
-        />
+      <div className="mt-10">
+        {cover ? (
+          <Screenshot
+            screen={cover}
+            sizes="(min-width: 1152px) 1104px, 100vw"
+            priority
+          />
+        ) : (
+          <div className="surface overflow-hidden">
+            <ProjectMedia name={project.name} sizes="100vw" />
+          </div>
+        )}
       </div>
 
       <Reveal className="mt-12 grid gap-10 lg:grid-cols-[2fr_1fr]">
@@ -86,16 +106,30 @@ export default async function ProjectPage({
               {description}
             </p>
           )}
-          {contributions && contributions.length > 0 && (
-            <section aria-labelledby="contributions">
-              <h2
-                id="contributions"
-                className="font-display text-2xl font-semibold"
-              >
-                {t("contributions")}
+          {metrics.length > 0 && (
+            <section aria-labelledby="reach">
+              <h2 id="reach" className="font-display text-2xl font-semibold">
+                {t("reach")}
+              </h2>
+              <dl className="mt-4 flex flex-wrap gap-4">
+                {metrics.map(({ value, label }) => (
+                  <div key={label} className="surface px-6 py-4">
+                    <dt className="text-sm text-muted-foreground">{label}</dt>
+                    <dd className="font-display text-4xl font-semibold text-brand-soft">
+                      {value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
+          {features && features.length > 0 && (
+            <section aria-labelledby="features">
+              <h2 id="features" className="font-display text-2xl font-semibold">
+                {t("features")}
               </h2>
               <ul className="mt-4 grid gap-3 text-muted-foreground">
-                {contributions.map((item) => (
+                {features.map((item) => (
                   <li key={item} className="flex gap-3">
                     <span
                       aria-hidden="true"
@@ -114,35 +148,38 @@ export default async function ProjectPage({
           )}
         </div>
 
-        {(Boolean(technologies?.length) || Boolean(url)) && (
+        {(Boolean(technologies?.length) ||
+          Boolean(infrastructure?.length) ||
+          links.length > 0) && (
           <aside className="space-y-8">
             {technologies && technologies.length > 0 && (
-              <section aria-labelledby="technologies">
-                <h2
-                  id="technologies"
-                  className="font-display text-2xl font-semibold"
-                >
-                  {t("technologies")}
-                </h2>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {technologies.map((tech) => (
-                    <li
-                      key={tech}
-                      className="rounded-full border border-border px-3 py-1 text-sm text-muted-foreground"
-                    >
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              <TagSection
+                id="technologies"
+                title={t("technologies")}
+                items={technologies}
+              />
             )}
-            {url && (
-              <Button asChild>
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                  {t("visit")}
-                  <ArrowUpRightIcon aria-hidden="true" />
-                </a>
-              </Button>
+            {infrastructure && infrastructure.length > 0 && (
+              <TagSection
+                id="infrastructure"
+                title={t("infrastructure")}
+                items={infrastructure}
+              />
+            )}
+            {links.length > 0 && (
+              <ul className="flex flex-wrap gap-3">
+                {links.map(({ href, label }, i) => (
+                  <li key={href}>
+                    <Button asChild variant={i === 0 ? "default" : "outline"}>
+                      <a href={href} target="_blank" rel="noopener noreferrer">
+                        {label ?? t("visit")}
+                        <ArrowUpRightIcon aria-hidden="true" />
+                        <span className="sr-only">{t("newTab")}</span>
+                      </a>
+                    </Button>
+                  </li>
+                ))}
+              </ul>
             )}
           </aside>
         )}
@@ -153,16 +190,13 @@ export default async function ProjectPage({
           <h2 id="gallery" className="font-display text-2xl font-semibold">
             {t("gallery")}
           </h2>
-          <ul className="mt-6 grid gap-6 sm:grid-cols-2">
-            {gallery.map((image) => (
-              <Reveal as="li" key={image.src}>
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                  className="h-auto w-full rounded-lg border border-border"
+          <ul className="mt-6 grid items-start gap-x-6 gap-y-10 md:grid-cols-2">
+            {gallery.map((screen) => (
+              <Reveal as="li" key={screen.desktop.src}>
+                <Screenshot
+                  screen={screen}
+                  sizes="(min-width: 1152px) 540px, (min-width: 768px) 45vw, 100vw"
+                  compact
                 />
               </Reveal>
             ))}

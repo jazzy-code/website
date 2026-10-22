@@ -1,12 +1,15 @@
 import { projects } from "@/content/projects";
-import type { Localized, Project } from "@/content/projects/types";
+import type {
+  ImageFile,
+  Localized,
+  Project,
+} from "@/content/projects/types";
 import type { Locale } from "@/i18n/routing";
 
-export type LocalizedImage = {
-  src: string;
-  width: number;
-  height: number;
+export type ScreenView = {
   alt: string;
+  desktop: ImageFile;
+  mobile?: ImageFile;
 };
 
 /** A project resolved for one locale: what the UI actually renders. */
@@ -15,37 +18,43 @@ export type ProjectView = {
   name: string;
   summary?: string;
   description?: string;
-  contributions?: readonly string[];
+  features?: readonly string[];
+  metrics: readonly { value: string; label: string }[];
   technologies?: readonly string[];
-  url?: string;
-  cover?: LocalizedImage;
-  gallery: readonly LocalizedImage[];
+  infrastructure?: readonly string[];
+  links: readonly { href: string; label?: string }[];
+  /** Screens in display order; the first one is the cover. */
+  screens: readonly ScreenView[];
+  /** Desktop capture of the first screen, used by the catalog. */
+  cover?: { src: string; alt: string };
 };
-
-function localizedImage(
-  image: NonNullable<Project["cover"]>,
-  locale: Locale,
-  fallbackAlt: string,
-): LocalizedImage {
-  const { alt, ...rest } = image;
-  return { ...rest, alt: alt[locale] ?? fallbackAlt };
-}
 
 function toView(project: Project, locale: Locale): ProjectView {
   const pick = <T>(value: Localized<T> | undefined) => value?.[locale];
+  const screens = (project.screens ?? []).map(({ alt, desktop, mobile }) => ({
+    alt: pick(alt) ?? project.name,
+    desktop,
+    mobile,
+  }));
 
   return {
     slug: project.slug,
     name: project.name,
     summary: pick(project.summary),
     description: pick(project.description),
-    contributions: pick(project.contributions),
+    features: pick(project.features),
+    metrics: (project.metrics ?? []).flatMap(({ value, label }) => {
+      const text = pick(label);
+      return text ? [{ value, label: text }] : [];
+    }),
     technologies: project.technologies,
-    url: project.url,
-    cover: project.cover && localizedImage(project.cover, locale, project.name),
-    gallery: (project.gallery ?? []).map((image) =>
-      localizedImage(image, locale, project.name),
-    ),
+    infrastructure: project.infrastructure,
+    links: (project.links ?? []).map(({ href, label }) => ({
+      href,
+      label: pick(label),
+    })),
+    screens,
+    cover: screens[0] && { src: screens[0].desktop.src, alt: screens[0].alt },
   };
 }
 

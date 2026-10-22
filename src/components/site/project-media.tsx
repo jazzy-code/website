@@ -36,7 +36,7 @@ export function ProjectMedia({
           fill
           sizes={sizes}
           priority={priority}
-          className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          className="object-cover object-top transition-transform duration-700 ease-out-expo group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
       ) : (
         <div
