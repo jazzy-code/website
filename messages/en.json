@@ -34,6 +34,23 @@
   "Home": {
     "placeholder": "Site under construction."
   },
+  "Projects": {
+    "eyebrow": "Portfolio",
+    "title": "Projects",
+    "description": "Projects delivered for clients under the Jazzy Code name.",
+    "listLabel": "Project list",
+    "detailEyebrow": "Project",
+    "pending": "Details coming soon",
+    "pendingNotice": "The full description of this project is coming soon.",
+    "back": "All projects",
+    "contributions": "Contributions",
+    "technologies": "Technologies",
+    "gallery": "Gallery",
+    "visit": "Visit project",
+    "navLabel": "More projects",
+    "previous": "Previous project",
+    "next": "Next project"
+  },
   "NotFound": {
     "title": "Page not found",
     "description": "This page doesn't exist or isn't available yet.",

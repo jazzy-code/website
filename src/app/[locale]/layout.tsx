@@ -6,8 +6,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { siteConfig } from "@/config/site";
-import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { localizedAlternates } from "@/lib/seo";
 import "../globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -27,24 +27,11 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
-  const languages = Object.fromEntries(
-    routing.locales.map((code) => [
-      code,
-      getPathname({ locale: code, href: "/" }),
-    ]),
-  );
-
   return {
     metadataBase: new URL(siteConfig.url),
     title: { default: t("title"), template: `%s | ${siteConfig.name}` },
     description: t("description"),
-    alternates: {
-      canonical: getPathname({ locale, href: "/" }),
-      languages: {
-        ...languages,
-        "x-default": getPathname({ locale: routing.defaultLocale, href: "/" }),
-      },
-    },
+    alternates: localizedAlternates(locale, "/"),
   };
 }
 

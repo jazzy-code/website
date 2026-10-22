@@ -34,6 +34,23 @@
   "Home": {
     "placeholder": "Sitio en construcción."
   },
+  "Projects": {
+    "eyebrow": "Portafolio",
+    "title": "Proyectos",
+    "description": "Proyectos realizados para clientes bajo el nombre Jazzy Code.",
+    "listLabel": "Lista de proyectos",
+    "detailEyebrow": "Proyecto",
+    "pending": "Detalles próximamente",
+    "pendingNotice": "La descripción completa de este proyecto estará disponible próximamente.",
+    "back": "Todos los proyectos",
+    "contributions": "Contribuciones",
+    "technologies": "Tecnologías",
+    "gallery": "Galería",
+    "visit": "Visitar proyecto",
+    "navLabel": "Más proyectos",
+    "previous": "Proyecto anterior",
+    "next": "Proyecto siguiente"
+  },
   "NotFound": {
     "title": "Página no encontrada",
     "description": "Esta página no existe o aún no está disponible.",
