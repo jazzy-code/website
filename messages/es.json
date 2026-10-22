@@ -1,0 +1,42 @@
+{
+  "Metadata": {
+    "title": "Jazzy Code",
+    "description": "Jazzy Code — agencia de desarrollo web."
+  },
+  "Common": {
+    "skipToContent": "Saltar al contenido",
+    "brand": "Jazzy Code"
+  },
+  "Nav": {
+    "label": "Navegación principal",
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "services": "Servicios",
+    "profile": "Perfil",
+    "cv": "CV",
+    "contact": "Contacto",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "LanguageSwitcher": {
+    "label": "Idioma",
+    "switchTo": "Cambiar a {language}",
+    "en": "English",
+    "es": "Español"
+  },
+  "Footer": {
+    "rights": "© {year} Jazzy Code. Todos los derechos reservados.",
+    "navLabel": "Navegación del pie de página",
+    "contactLabel": "Contacto directo",
+    "email": "Correo",
+    "whatsapp": "WhatsApp"
+  },
+  "Home": {
+    "placeholder": "Sitio en construcción."
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "Esta página no existe o aún no está disponible.",
+    "back": "Volver al inicio"
+  }
+}

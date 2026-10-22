@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/*
+ * Dark Premium tokens.
+ * Contrast (WCAG): foreground/background 18:1, muted/surface 7.1:1,
+ * accent-soft/surface 8.3:1, white on accent 11.8:1.
+ * `--color-accent` (#56008C) is only 1.67:1 on the background, so use it for
+ * fills, glows and gradients — never for text or thin borders. Use
+ * `accent-soft` for text/links and `accent-ring` for borders and focus.
+ */
+@theme {
+  --color-background: #0a0a0d;
+  --color-surface: #15151b;
+  --color-surface-raised: #1d1d26;
+  --color-border: #2e2e38;
+  --color-foreground: #f4f4f6;
+  --color-muted: #a1a1ab;
+  --color-accent: #56008c;
+  --color-accent-soft: #c79bff;
+  --color-accent-ring: #8b5cc4;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Expressive motion is opt-out: users who ask for less get none. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "Metadata": {
+    "title": "Jazzy Code",
+    "description": "Jazzy Code — web development agency."
+  },
+  "Common": {
+    "skipToContent": "Skip to content",
+    "brand": "Jazzy Code"
+  },
+  "Nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "projects": "Projects",
+    "services": "Services",
+    "profile": "Profile",
+    "cv": "CV",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "LanguageSwitcher": {
+    "label": "Language",
+    "switchTo": "Switch to {language}",
+    "en": "English",
+    "es": "Español"
+  },
+  "Footer": {
+    "rights": "© {year} Jazzy Code. All rights reserved.",
+    "navLabel": "Footer navigation",
+    "contactLabel": "Direct contact",
+    "email": "Email",
+    "whatsapp": "WhatsApp"
+  },
+  "Home": {
+    "placeholder": "Site under construction."
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "This page doesn't exist or isn't available yet.",
+    "back": "Back to home"
+  }
+}
