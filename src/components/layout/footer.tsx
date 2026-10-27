@@ -1,12 +1,12 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { navItems, siteConfig } from "@/config/site";
+// import { whatsappUrl } from "@/lib/contact"; // WhatsApp hidden for now
 import { Wordmark } from "./wordmark";
 
 export function Footer() {
   const t = useTranslations("Footer");
   const nav = useTranslations("Nav");
-  const hasContact = siteConfig.email || siteConfig.whatsapp;
 
   return (
     <footer className="border-t border-border bg-surface">
@@ -23,32 +23,36 @@ export function Footer() {
             ))}
           </ul>
         </nav>
-        {hasContact && (
-          <ul aria-label={t("contactLabel")} className="grid gap-2 text-sm">
-            {siteConfig.email && (
-              <li>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="text-brand-soft underline-offset-4 hover:underline"
-                >
-                  {t("email")}: {siteConfig.email}
-                </a>
-              </li>
-            )}
-            {siteConfig.whatsapp && (
-              <li>
-                <a
-                  href={`https://wa.me/${siteConfig.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand-soft underline-offset-4 hover:underline"
-                >
-                  {t("whatsapp")}
-                </a>
-              </li>
-            )}
-          </ul>
-        )}
+        <ul aria-label={t("contactLabel")} className="grid gap-2 text-sm">
+          {siteConfig.email && (
+            <li>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="text-brand-soft underline-offset-4 hover:underline"
+              >
+                {t("email")}: {siteConfig.email}
+              </a>
+            </li>
+          )}
+          {[
+            // WhatsApp hidden for now (the number is not shown publicly):
+            // { label: t("whatsapp"), href: whatsappUrl() },
+            { label: "LinkedIn", href: siteConfig.social.linkedin },
+            { label: "GitHub", href: siteConfig.social.github },
+          ].map(({ label, href }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-soft underline-offset-4 hover:underline"
+              >
+                {label}
+                <span className="sr-only"> {t("newTab")}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
       <p className="border-t border-border px-4 py-4 text-center text-xs text-muted-foreground">
         {t("rights", { year: new Date().getFullYear() })}

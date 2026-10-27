@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { siteConfig } from "@/config/site";
 import { routing } from "@/i18n/routing";
-import { localizedAlternates } from "@/lib/seo";
+import { localizedAlternates, openGraphFor } from "@/lib/seo";
 import "../globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -32,6 +32,9 @@ export async function generateMetadata({
     title: { default: t("title"), template: `%s | ${siteConfig.name}` },
     description: t("description"),
     alternates: localizedAlternates(locale, "/"),
+    openGraph: openGraphFor(locale, "/", t("title"), t("description")),
+    // Pages that do not set their own twitter block inherit this one.
+    twitter: { card: "summary_large_image" },
   };
 }
 

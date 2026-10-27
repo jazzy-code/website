@@ -8,7 +8,7 @@ import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
 import { routing } from "@/i18n/routing";
 import { getProjects } from "@/lib/projects";
-import { localizedAlternates } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -17,11 +17,7 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "Projects" });
 
-  return {
-    title: t("title"),
-    description: t("description"),
-    alternates: localizedAlternates(locale, "/projects"),
-  };
+  return buildMetadata(locale, "/projects", t("title"), t("description"));
 }
 
 export default async function ProjectsPage({

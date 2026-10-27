@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/site/container";
+import { JsonLd } from "@/components/site/json-ld";
 import { ProjectMedia } from "@/components/site/project-media";
 import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -13,7 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { getProject, getProjectSlugs } from "@/lib/projects";
-import { localizedAlternates } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -29,12 +31,12 @@ export async function generateMetadata({
   const found = getProject(slug, locale);
   if (!found) return {};
 
-  return {
-    title: found.project.name,
-    // Without a confirmed summary the site-wide description is inherited.
-    ...(found.project.summary && { description: found.project.summary }),
-    alternates: localizedAlternates(locale, `/projects/${slug}`),
-  };
+  return buildMetadata(
+    locale,
+    `/projects/${slug}`,
+    found.project.name,
+    found.project.summary,
+  );
 }
 
 export default async function ProjectPage({
@@ -48,6 +50,7 @@ export default async function ProjectPage({
   if (!found) notFound();
 
   const t = await getTranslations("Projects");
+  const nav = await getTranslations("Nav");
   const { project, index, previous, next } = found;
   const {
     description,
@@ -70,6 +73,16 @@ export default async function ProjectPage({
 
   return (
     <Container className="py-12 sm:py-20">
+      <JsonLd
+        data={breadcrumbJsonLd(
+          [
+            { name: nav("home"), href: "/" },
+            { name: nav("projects"), href: "/projects" },
+            { name: project.name, href: `/projects/${project.slug}` },
+          ],
+          locale,
+        )}
+      />
       <Button asChild variant="link" size="sm" className="-ml-4 mb-6">
         <Link href="/projects">
           <ArrowLeftIcon aria-hidden="true" />

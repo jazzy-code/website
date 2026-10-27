@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jazzy Code — website
 
-## Getting Started
+Bilingual (English/Spanish) website for the Jazzy Code software agency, with a
+portfolio of projects. Next.js App Router, TypeScript (strict), Tailwind CSS v4,
+`next-intl` and pnpm.
 
-First, run the development server:
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm dev        # development server
+pnpm build      # production build
+pnpm start      # serve the production build
+pnpm lint       # ESLint
+pnpm typecheck  # tsc --noEmit
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Routes and languages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+English is the default locale and has no prefix; Spanish lives under `/es`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Page     | English     | Spanish        |
+| -------- | ----------- | -------------- |
+| Home     | `/`         | `/es`          |
+| Projects | `/projects` | `/es/projects` |
+| Project  | `/projects/<slug>` | `/es/projects/<slug>` |
+| Services | `/services` | `/es/services` |
+| Profile  | `/profile`  | `/es/profile`  |
+| CV       | `/cv`       | `/es/cv`       |
+| Contact  | `/contact`  | `/es/contact`  |
 
-## Learn More
+`/en/...` redirects to the unprefixed URL.
 
-To learn more about Next.js, take a look at the following resources:
+## Where things live
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `messages/{en,es}.json` — interface texts (keep both files in sync).
+- `src/content/projects/` — portfolio data (`index.ts`) and its types. Add or
+  edit a project here; catalog, detail pages, sitemap and social images pick it
+  up. Only confirmed information goes in; the UI hides empty sections.
+- `src/content/services.ts`, `src/content/profile.ts` — services, profile and CV data.
+- `src/config/site.ts` — site URL, contact email, social links, CV file.
+- `public/images/projects/<folder>/` — project screenshots
+  (`image-N.png` desktop, `image-N-mobile.png` phone).
+- `public/docs/` — CV PDF.
+- `src/components/ui/` — shadcn/ui components in use (Button, Sheet);
+  `src/components/site/` — the site's own components.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment variables
 
-## Deploy on Vercel
+Copy `.env.example` to `.env.local` for local overrides. Both are optional:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `NEXT_PUBLIC_SITE_URL` — final public URL. On Vercel, the production URL is
+  used when it is empty.
+- `NEXT_PUBLIC_CONTACT_EMAIL` — contact email. A temporary test address is used
+  when it is empty.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploying on Vercel
+
+Import the repository; the defaults work (framework Next.js, `pnpm install`,
+`pnpm build`). Set `NEXT_PUBLIC_SITE_URL` when a custom domain is attached so
+canonical URLs, the sitemap and social images use it.

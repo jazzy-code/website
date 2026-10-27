@@ -3,9 +3,8 @@ import type { Project } from "./types";
 /**
  * Portfolio. Order here is the order shown in the catalog.
  *
- * Only confirmed information goes here. R&C Multimodal and RECIVIP have no
- * public URL, so they have no `links`. The UI hides every section that has no
- * data.
+ * Only confirmed information goes here. RECIVIP has no public URL, so it has
+ * no `links`. The UI hides every section that has no data.
  *
  * `screens` point at the real captures in /public/images/projects/<folder>/.
  * The first screen is the cover. Roles follow what each file actually shows,
@@ -15,6 +14,13 @@ import type { Project } from "./types";
  * alpha-wolves-arena/image-5-mobile.png (a second desktop screen, not a phone
  * capture).
  */
+/** Projects highlighted on the home page, in display order. */
+export const featuredSlugs = [
+  "rollstack-docs-website",
+  "the-world-club",
+  "alpha-wolves-arena",
+] as const;
+
 export const projects: readonly Project[] = [
   {
     slug: "rollstack-docs-website",
@@ -412,6 +418,7 @@ export const projects: readonly Project[] = [
       "Mapbox",
       "MySQL",
     ],
+    links: [{ href: "https://rcmultimodal.com" }],
   },
   {
     slug: "marhaba-marbella",

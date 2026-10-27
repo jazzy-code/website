@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Jazzy Code",
-    "description": "Jazzy Code — web development agency."
+    "title": "Jazzy Code | Custom software development",
+    "description": "Jazzy Code is a software development agency: websites and web applications, custom software, dashboards, APIs, automations, and cloud solutions."
   },
   "Common": {
     "skipToContent": "Skip to content",
@@ -29,10 +29,106 @@
     "navLabel": "Footer navigation",
     "contactLabel": "Direct contact",
     "email": "Email",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "newTab": "(opens in a new tab)"
   },
   "Home": {
-    "placeholder": "Site under construction."
+    "eyebrow": "Software development agency",
+    "title": "Custom software that turns ideas and business processes into digital solutions",
+    "description": "Jazzy Code builds websites and web applications, custom systems, dashboards, APIs, and automations for clients across different industries.",
+    "contact": "Get in touch",
+    "projects": "View projects",
+    "servicesEyebrow": "Services",
+    "servicesTitle": "What Jazzy Code builds",
+    "servicesDescription": "Six areas of work, from websites to cloud solutions.",
+    "servicesLink": "All services",
+    "projectsEyebrow": "Portfolio",
+    "projectsTitle": "Selected projects",
+    "projectsLink": "View all projects",
+    "approachEyebrow": "Approach",
+    "approachTitle": "Technology for real business needs",
+    "approach": {
+      "custom": {
+        "title": "Built to fit",
+        "text": "Software designed around each idea or process, not the other way around."
+      },
+      "fullstack": {
+        "title": "End to end",
+        "text": "Frontend, backend, databases, and cloud services working together."
+      },
+      "needs": {
+        "title": "Real needs",
+        "text": "Digital solutions aimed at concrete problems of the business."
+      }
+    }
+  },
+  "Cta": {
+    "title": "Have an idea or a process to digitize?",
+    "description": "Let's talk about your project.",
+    "whatsapp": "Message on WhatsApp",
+    "contact": "Contact page"
+  },
+  "Services": {
+    "metaTitle": "Services",
+    "metaDescription": "Custom software services by Jazzy Code: websites and web applications, custom software, dashboards, APIs, automations, and cloud solutions.",
+    "eyebrow": "Services",
+    "title": "Services",
+    "description": "Areas of work for building websites, systems, and digital solutions tailored to each need.",
+    "listLabel": "Services list",
+    "problem": "The problem",
+    "examples": "Possible deliverables",
+    "note": "These are illustrative examples of what can be built, not a list of delivered work. For work already delivered, see the portfolio.",
+    "noteLink": "View projects",
+    "cta": "Talk about this service"
+  },
+  "Contact": {
+    "metaTitle": "Contact",
+    "metaDescription": "Contact Jazzy Code by email to talk about your project.",
+    "eyebrow": "Contact",
+    "title": "Let's talk about your project",
+    "description": "The most direct way to reach Jazzy Code is email. Tell us what you need and we'll take it from there.",
+    "whatsappTitle": "WhatsApp",
+    "whatsappText": "Start a conversation about your project.",
+    "whatsappButton": "Start a conversation on WhatsApp",
+    "whatsappMessage": "Hi, I'd like to talk about a project with Jazzy Code.",
+    "emailTitle": "Email",
+    "emailText": "Tell us about your project.",
+    "emailButton": "Send an email",
+    "emailSubject": "Project with Jazzy Code",
+    "otherTitle": "Elsewhere",
+    "newTab": "(opens in a new tab)"
+  },
+  "Profile": {
+    "metaTitle": "Profile",
+    "metaDescription": "Profile of Jazzy Code: the founder behind the technical work, the technology stack, and the solutions in the portfolio.",
+    "eyebrow": "Profile",
+    "title": "Jazzy Code",
+    "description": "A software development agency focused on custom solutions: websites, systems, dashboards, APIs, and automations.",
+    "founderEyebrow": "Behind the work",
+    "founderRole": "Founder of Jazzy Code, responsible for the technical work",
+    "viewCv": "View CV",
+    "stackTitle": "Technology stack",
+    "stackDescription": "Technologies and tools used across professional experience and portfolio projects.",
+    "solutionsTitle": "Solutions in the portfolio",
+    "solutionsDescription": "Kinds of solutions already built for clients.",
+    "allProjects": "All projects"
+  },
+  "CV": {
+    "metaTitle": "CV",
+    "metaDescription": "Curriculum vitae of Javier Torres, Fullstack Software Engineer: experience, skills, and education.",
+    "eyebrow": "Curriculum vitae",
+    "download": "Download CV (PDF)",
+    "view": "View PDF",
+    "pdfNote": "The PDF is available in English.",
+    "about": "About me",
+    "experience": "Work experience",
+    "skills": "Skills",
+    "education": "Education",
+    "languages": "Languages",
+    "projects": "Independent projects",
+    "projectsDescription": "Details of each project are in the portfolio.",
+    "links": "Profiles",
+    "newTab": "(opens in a new tab)"
   },
   "Projects": {
     "eyebrow": "Portfolio",

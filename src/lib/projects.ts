@@ -1,4 +1,4 @@
-import { projects } from "@/content/projects";
+import { featuredSlugs, projects } from "@/content/projects";
 import type {
   ImageFile,
   Localized,
@@ -64,6 +64,16 @@ export function getProjectSlugs() {
 
 export function getProjects(locale: Locale): ProjectView[] {
   return projects.map((project) => toView(project, locale));
+}
+
+export function getFeaturedProjects(locale: Locale): ProjectView[] {
+  return getProjects(locale).filter((project) =>
+    (featuredSlugs as readonly string[]).includes(project.slug),
+  ).sort(
+    (a, b) =>
+      (featuredSlugs as readonly string[]).indexOf(a.slug) -
+      (featuredSlugs as readonly string[]).indexOf(b.slug),
+  );
 }
 
 /** The project plus its neighbours in catalog order (wrapping around). */
