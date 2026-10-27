@@ -22,8 +22,9 @@ export function LanguageSwitcher() {
                 lang={code}
                 hrefLang={code}
                 aria-current={active ? "true" : undefined}
+                // The accessible name starts with the visible text ("ES").
                 aria-label={
-                  active ? undefined : t("switchTo", { language: t(code) })
+                  active ? undefined : `${code.toUpperCase()} — ${t(code)}`
                 }
                 className={
                   "block rounded-full px-3 py-1 font-medium uppercase transition-colors duration-200 " +
