@@ -32,7 +32,7 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=20.9"
+    "node": "24.x"
   },
   "packageManager": "pnpm@12.6.0"
 }
