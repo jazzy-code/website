@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { navItems, siteConfig } from "@/config/site";
 // import { whatsappUrl } from "@/lib/contact"; // WhatsApp hidden for now
-import { Wordmark } from "./wordmark";
+import Image from "next/image";
 
 export function Footer() {
   const t = useTranslations("Footer");
@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-3">
-        <Wordmark />
+        <Image src="/logos/logo-white.png" alt="Logo" width={140} height={30} /> 
         <nav aria-label={t("navLabel")}>
           <ul className="grid gap-2 text-sm">
             {navItems.map(({ key, href }) => (

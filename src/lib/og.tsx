@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 
 export const ogSize = { width: 1200, height: 630 };
@@ -17,11 +19,32 @@ function truncate(text: string, max: number) {
   return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
 }
 
+let logoDataUri: string | undefined;
+
 /**
- * Brand card for social previews: dark background, purple glow, wordmark and
+ * The logo is embedded as a data URI read from disk: ImageResponse refuses to
+ * fetch local URLs (SSRF protection), which breaks the build. The white
+ * variant is used because the primary purple has too little contrast on the
+ * dark card.
+ */
+async function getLogo() {
+  if (!logoDataUri) {
+    const file = path.join(process.cwd(), "public", "logos", "logo-white.png");
+    logoDataUri = `data:image/png;base64,${(await readFile(file)).toString("base64")}`;
+  }
+  return logoDataUri;
+}
+
+/**
+ * Brand card for social previews: dark background, purple glow, logo and
  * text only. No screenshots, so it never exposes project data.
  */
-export function renderOgImage({ title, eyebrow, description }: OgImageProps) {
+export async function renderOgImage({
+  title,
+  eyebrow,
+  description,
+}: OgImageProps) {
+  const logo = await getLogo();
   const titleSize = title.length > 60 ? 60 : title.length > 18 ? 76 : 96;
 
   return new ImageResponse(
@@ -39,9 +62,13 @@ export function renderOgImage({ title, eyebrow, description }: OgImageProps) {
             "radial-gradient(circle at 85% 0%, rgba(86,0,140,0.75), rgba(10,10,13,0) 60%), #0A0A0D",
         }}
       >
-        <div style={{ display: "flex", fontSize: 40, fontWeight: 700 }}>
-          Jazzy<span style={{ color: "#C79BFF" }}>Code</span>
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={logo}
+          width={154}
+          height={120}
+          alt="Jazzy Code"
+        />
         <div style={{ display: "flex", flexDirection: "column" }}>
           {eyebrow && (
             <div

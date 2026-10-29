@@ -12,7 +12,7 @@ export const siteConfig = {
   name: "Jazzy Code",
   url: resolveSiteUrl(),
   // Temporary test address; NEXT_PUBLIC_CONTACT_EMAIL overrides it.
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "javtorres.devtest@gmail.com",
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@jazzycode.com",
   // Not shown anywhere for now (WhatsApp UI is commented out).
   whatsapp: { number: "524111186290", display: "+52 411 118 6290" },
   social: {
