@@ -14,6 +14,11 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Vercel kept serving an old globals.css (the new sections' styles were
+    // missing) from the restored Turbopack build cache; build from scratch.
+    turbopackFileSystemCacheForBuild: false,
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
