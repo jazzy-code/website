@@ -66,6 +66,30 @@ export function getProjects(locale: Locale): ProjectView[] {
   return projects.map((project) => toView(project, locale));
 }
 
+/** The first screen of a project that has both a desktop and a phone capture. */
+export type DeviceScreen = {
+  slug: string;
+  name: string;
+  alt: string;
+  desktop: ImageFile;
+  mobile: ImageFile;
+};
+
+export function getDeviceScreens(locale: Locale): DeviceScreen[] {
+  return getProjects(locale).flatMap(({ slug, name, screens }) => {
+    const screen = screens.find(({ mobile }) => mobile);
+    if (!screen?.mobile) return [];
+    return [
+      { slug, name, alt: screen.alt, desktop: screen.desktop, mobile: screen.mobile },
+    ];
+  });
+}
+
+/** Every technology used across the projects, without repeats, in first-seen order. */
+export function getAllTechnologies(): string[] {
+  return [...new Set(projects.flatMap(({ technologies }) => technologies ?? []))];
+}
+
 export function getFeaturedProjects(locale: Locale): ProjectView[] {
   return getProjects(locale).filter((project) =>
     (featuredSlugs as readonly string[]).includes(project.slug),

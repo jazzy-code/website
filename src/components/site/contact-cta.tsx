@@ -12,8 +12,8 @@ export async function ContactCta() {
 
   return (
     <Container className="py-16 sm:py-24">
-      <div className="surface overflow-hidden px-6 py-12 text-center sm:px-12 sm:py-16">
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+      <div className="relative isolate overflow-hidden rounded-[2rem] border border-brand-ring/40 bg-[radial-gradient(50rem_24rem_at_50%_-20%,color-mix(in_oklab,var(--brand)_90%,white_10%),transparent_75%),var(--card)] px-6 py-16 text-center sm:px-12 sm:py-24">
+        <h2 className="font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
           {t("title")}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">

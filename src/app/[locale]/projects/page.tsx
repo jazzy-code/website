@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/site/container";
-import { ProjectCard } from "@/components/site/project-card";
+import { ContactCta } from "@/components/site/contact-cta";
+import { PageHero } from "@/components/site/page-hero";
+import { ProjectBanner } from "@/components/site/project-banner";
 import { Reveal } from "@/components/site/reveal";
-import { SectionHeading } from "@/components/site/section-heading";
+import { Section } from "@/components/site/section";
 import { routing } from "@/i18n/routing";
 import { getProjects } from "@/lib/projects";
 import { buildMetadata } from "@/lib/seo";
@@ -30,31 +32,24 @@ export default async function ProjectsPage({
   const projects = getProjects(locale);
 
   return (
-    <Container className="py-16 sm:py-24">
-      <SectionHeading
-        as="h1"
-        eyebrow={t("eyebrow")}
-        title={t("title")}
-        description={t("description")}
-      />
-      <ul
-        aria-label={t("listLabel")}
-        className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {projects.map((project, i) => (
-          <Reveal as="li" key={project.slug} delay={(i % 3) * 100}>
-            <ProjectCard
-              index={i + 1}
-              title={project.name}
-              href={`/projects/${project.slug}`}
-              summary={project.summary}
-              tags={project.technologies}
-              image={project.cover}
-              statusLabel={project.summary ? undefined : t("pending")}
-            />
-          </Reveal>
-        ))}
-      </ul>
-    </Container>
+    <>
+      <PageHero title={t("title")} description={t("description")} />
+      <Section className="pt-4 sm:pt-4">
+        <Container>
+          <ul aria-label={t("listLabel")} className="grid gap-8">
+            {projects.map((project, i) => (
+              <Reveal as="li" key={project.slug} variant="scale">
+                <ProjectBanner
+                  project={project}
+                  reverse={i % 2 === 1}
+                  cta={t("viewProject")}
+                />
+              </Reveal>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+      <ContactCta />
+    </>
   );
 }

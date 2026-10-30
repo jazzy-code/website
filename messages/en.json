@@ -60,7 +60,22 @@
         "title": "Real needs",
         "text": "Digital solutions aimed at concrete problems of the business."
       }
-    }
+    },
+    "viewProject": "View project",
+    "devicesEyebrow": "Every screen",
+    "devicesTitle": "We take your app to every device",
+    "devicesDescription": "Interfaces designed for desktop and phone alike. Pick a project to see the same screen on both.",
+    "devicesPicker": "Choose a project",
+    "devicesLink": "See {name}",
+    "clientsLabel": "Companies we have worked with",
+    "reviewsEyebrow": "Reviews",
+    "reviewsTitle": "What clients say",
+    "techTitle": "Technologies we build with",
+    "techDescription": "The tools behind the projects above, from interfaces to databases and cloud.",
+    "mapTitle": "Clients in {count} countries",
+    "mapDescription": "From Spain and Andorra to the Americas, we build software for teams wherever they are.",
+    "mapList": "Countries",
+    "mockNote": "Demo content"
   },
   "Cta": {
     "title": "Have an idea or a process to digitize?",
@@ -149,7 +164,8 @@
     "newTab": "(opens in a new tab)",
     "navLabel": "More projects",
     "previous": "Previous project",
-    "next": "Next project"
+    "next": "Next project",
+    "viewProject": "View project"
   },
   "NotFound": {
     "title": "Page not found",

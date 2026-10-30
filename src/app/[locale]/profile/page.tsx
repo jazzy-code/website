@@ -1,4 +1,4 @@
-import { ArrowUpRightIcon } from "lucide-react";
+import { ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
@@ -6,7 +6,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ContactCta } from "@/components/site/contact-cta";
 import { Container } from "@/components/site/container";
 import { JsonLd } from "@/components/site/json-ld";
+import { PageHero } from "@/components/site/page-hero";
 import { Reveal } from "@/components/site/reveal";
+import { Section } from "@/components/site/section";
 import { SectionHeading } from "@/components/site/section-heading";
 import { SkillGroups } from "@/components/site/skill-groups";
 import { Button } from "@/components/ui/button";
@@ -44,109 +46,104 @@ export default async function ProfilePage({
   return (
     <>
       <JsonLd data={personJsonLd(locale)} />
-      <Container className="py-16 sm:py-24">
-        <SectionHeading
-          as="h1"
-          eyebrow={t("eyebrow")}
-          title={t("title")}
-          description={t("description")}
-        />
+      <PageHero title={t("title")} description={t("description")} />
 
-        <section
-          aria-labelledby="founder"
-          className="surface mt-12 grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_1.6fr]"
-        >
-          <div>
-            <p className="text-sm font-medium tracking-widest text-brand-soft uppercase">
-              {t("founderEyebrow")}
-            </p>
-            <h2
-              id="founder"
-              className="mt-3 font-display text-3xl font-semibold tracking-tight"
-            >
-              {profile.name}
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              {pick(profile.title, locale)}
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {t("founderRole")}
-            </p>
-          </div>
-          <div>
-            <p className="text-lg leading-relaxed text-pretty">
-              {pick(profile.summary, locale)}
-            </p>
-            <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <li>
-                <Button asChild>
-                  <Link href="/cv">{t("viewCv")}</Link>
-                </Button>
-              </li>
-              {profiles.map(({ label, href }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-brand-soft underline-offset-4 hover:underline"
+      <Section className="pt-0 sm:pt-0">
+        <Container>
+          <section
+            aria-labelledby="founder"
+            className="relative grid gap-8 overflow-hidden rounded-[2rem] bg-[radial-gradient(50rem_24rem_at_100%_0%,color-mix(in_oklab,var(--brand)_70%,transparent),transparent_70%),var(--card)] p-8 sm:p-12 lg:grid-cols-[1fr_1.6fr] lg:gap-14"
+          >
+            <div>
+              <h2
+                id="founder"
+                className="font-display text-4xl font-semibold tracking-tight"
+              >
+                {profile.name}
+              </h2>
+              <p className="mt-3 text-lg text-brand-soft">
+                {pick(profile.title, locale)}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {t("founderRole")}
+              </p>
+            </div>
+            <div>
+              <p className="text-lg leading-relaxed text-pretty">
+                {pick(profile.summary, locale)}
+              </p>
+              <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <li>
+                  <Button asChild size="lg">
+                    <Link href="/cv">{t("viewCv")}</Link>
+                  </Button>
+                </li>
+                {profiles.map(({ label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-brand-soft underline-offset-4 hover:underline"
+                    >
+                      {label}
+                      <ArrowUpRightIcon className="size-4" aria-hidden="true" />
+                      <span className="sr-only">{cv("newTab")}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        </Container>
+      </Section>
+
+      <Section tone="light">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              title={t("stackTitle")}
+              description={t("stackDescription")}
+            />
+            <div className="mt-12">
+              <SkillGroups locale={locale} />
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              title={t("solutionsTitle")}
+              description={t("solutionsDescription")}
+            />
+            <ul className="mt-12 grid gap-3">
+              {projects.map((project) => (
+                <li key={project.slug}>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="group grid items-center gap-2 rounded-3xl bg-card p-6 transition-colors duration-300 hover:bg-secondary md:grid-cols-[1fr_2fr_auto] md:gap-8"
                   >
-                    {label}
-                    <ArrowUpRightIcon className="size-4" aria-hidden="true" />
-                    <span className="sr-only">{cv("newTab")}</span>
-                  </a>
+                    <h3 className="font-display text-xl font-semibold">
+                      {project.name}
+                    </h3>
+                    <p className="text-muted-foreground">{project.summary}</p>
+                    <ArrowRightIcon
+                      aria-hidden="true"
+                      className="hidden size-5 text-brand-soft transition-transform duration-300 group-hover:translate-x-1 md:block"
+                    />
+                  </Link>
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
-      </Container>
-
-      <Container className="py-12 sm:py-16">
-        <Reveal>
-          <SectionHeading
-            as="h2"
-            index={1}
-            title={t("stackTitle")}
-            description={t("stackDescription")}
-          />
-          <div className="mt-10">
-            <SkillGroups locale={locale} />
-          </div>
-        </Reveal>
-      </Container>
-
-      <Container className="py-12 sm:py-16">
-        <Reveal>
-          <SectionHeading
-            as="h2"
-            index={2}
-            title={t("solutionsTitle")}
-            description={t("solutionsDescription")}
-          />
-          <ul className="mt-10 border-t border-border">
-            {projects.map((project) => (
-              <li
-                key={project.slug}
-                className="grid gap-2 border-b border-border py-5 md:grid-cols-[1fr_2fr] md:gap-6"
-              >
-                <h3 className="font-display text-xl font-semibold">
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="hover:text-brand-soft"
-                  >
-                    {project.name}
-                  </Link>
-                </h3>
-                <p className="text-muted-foreground">{project.summary}</p>
-              </li>
-            ))}
-          </ul>
-          <Button asChild variant="link" className="mt-6 -ml-5">
-            <Link href="/projects">{t("allProjects")}</Link>
-          </Button>
-        </Reveal>
-      </Container>
+            <Button asChild variant="link" className="mt-6 -ml-5">
+              <Link href="/projects">{t("allProjects")}</Link>
+            </Button>
+          </Reveal>
+        </Container>
+      </Section>
 
       <ContactCta />
     </>

@@ -50,6 +50,9 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
+      // Next 16 no longer resets scroll to the top on navigation while
+      // `scroll-behavior: smooth` is set, unless this attribute is present.
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">

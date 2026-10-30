@@ -60,7 +60,22 @@
         "title": "Necesidades reales",
         "text": "Soluciones digitales orientadas a problemas concretos del negocio."
       }
-    }
+    },
+    "viewProject": "Ver proyecto",
+    "devicesEyebrow": "Todas las pantallas",
+    "devicesTitle": "Llevamos tu app a todos los dispositivos",
+    "devicesDescription": "Interfaces pensadas tanto para escritorio como para teléfono. Elige un proyecto para ver la misma pantalla en ambos.",
+    "devicesPicker": "Elige un proyecto",
+    "devicesLink": "Ver {name}",
+    "clientsLabel": "Empresas con las que hemos trabajado",
+    "reviewsEyebrow": "Reseñas",
+    "reviewsTitle": "Lo que dicen los clientes",
+    "techTitle": "Tecnologías con las que construimos",
+    "techDescription": "Las herramientas detrás de los proyectos anteriores, desde interfaces hasta bases de datos y nube.",
+    "mapTitle": "Clientes en {count} países",
+    "mapDescription": "Desde España y Andorra hasta América, construimos software para equipos estén donde estén.",
+    "mapList": "Países",
+    "mockNote": "Contenido de ejemplo"
   },
   "Cta": {
     "title": "¿Tienes una idea o un proceso que digitalizar?",
@@ -149,7 +164,8 @@
     "newTab": "(se abre en una pestaña nueva)",
     "navLabel": "Más proyectos",
     "previous": "Proyecto anterior",
-    "next": "Proyecto siguiente"
+    "next": "Proyecto siguiente",
+    "viewProject": "Ver proyecto"
   },
   "NotFound": {
     "title": "Página no encontrada",

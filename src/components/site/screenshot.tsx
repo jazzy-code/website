@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { ScreenView } from "@/lib/projects";
 import { cn } from "@/lib/utils";
+import { BrowserFrame, PhoneFrame } from "./device-frames";
 
 type ScreenshotProps = {
   screen: ScreenView;
@@ -12,9 +13,9 @@ type ScreenshotProps = {
 };
 
 /**
- * One screen: the desktop capture as the main image and, when it exists, the
- * phone capture of the same screen in a vertical frame. The phone sits below
- * the desktop image on small screens and overlaps its corner from `sm` up.
+ * One screen: the desktop capture in a browser frame and, when it exists, the
+ * phone capture of the same screen in a phone frame. The phone sits below the
+ * desktop image on small screens and overlaps its corner from `sm` up.
  */
 export function Screenshot({
   screen,
@@ -27,7 +28,7 @@ export function Screenshot({
 
   return (
     <div className="flex flex-col items-center gap-4 sm:relative sm:block">
-      <div className="surface w-full overflow-hidden">
+      <BrowserFrame className="w-full">
         <Image
           src={desktop.src}
           alt={alt}
@@ -37,22 +38,24 @@ export function Screenshot({
           priority={priority}
           className="h-auto w-full"
         />
-      </div>
+      </BrowserFrame>
       {mobile && (
         <div
           className={cn(
-            "w-[min(11rem,55%)] rounded-3xl border border-border bg-background p-1.5 shadow-2xl sm:absolute sm:right-4 sm:bottom-4",
-            compact ? "sm:w-[28%]" : "sm:w-[22%]",
+            "w-[min(11rem,55%)] sm:absolute sm:right-4 sm:-bottom-6",
+            compact ? "sm:w-[28%]" : "sm:w-[20%]",
           )}
         >
-          <Image
-            src={mobile.src}
-            alt={`${alt} — ${t("mobileView")}`}
-            width={mobile.width}
-            height={mobile.height}
-            sizes="(min-width: 640px) 25vw, 11rem"
-            className="h-auto w-full rounded-[1.25rem]"
-          />
+          <PhoneFrame>
+            <Image
+              src={mobile.src}
+              alt={`${alt} — ${t("mobileView")}`}
+              width={mobile.width}
+              height={mobile.height}
+              sizes="(min-width: 640px) 25vw, 11rem"
+              className="h-auto w-full"
+            />
+          </PhoneFrame>
         </div>
       )}
     </div>

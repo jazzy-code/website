@@ -203,3 +203,221 @@ body::after {
     transform: none;
   }
 }
+
+/*
+ * Light sections. Re-points the same semantic tokens, so every component
+ * (surface, Button, text-muted-foreground, text-brand-soft...) adapts without
+ * changes. Contrast: foreground/background 18:1, muted-foreground 6.9:1,
+ * brand-soft (purple text) 10.6:1. The section paints an opaque background so
+ * the page glows never show through.
+ */
+.theme-light {
+  --background: #f4f2f7;
+  --foreground: #0a0a0d;
+  --card: #ffffff;
+  --card-foreground: #0a0a0d;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0d;
+  --secondary: #ebe7f1;
+  --secondary-foreground: #0a0a0d;
+  --muted: #ebe7f1;
+  --muted-foreground: #52525c;
+  --accent: #ebe7f1;
+  --accent-foreground: #0a0a0d;
+  --border: #d9d3e3;
+  --input: #d9d3e3;
+  --ring: #56008c;
+  --brand-soft: #56008c;
+  --brand-ring: #7c3fb0;
+
+  background: var(--background);
+  color: var(--foreground);
+  color-scheme: light;
+}
+
+/* Entrance on load (hero): pure CSS, so it also works before hydration. */
+.rise {
+  animation: rise 0.9s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Transform only: the heading is never transparent, so it paints at once. */
+.rise-soft {
+  animation: rise-soft 0.9s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.float {
+  animation: float 7s ease-in-out infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+}
+
+@keyframes rise-soft {
+  from {
+    transform: translateY(1rem);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-0.6rem);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(1.75rem);
+  }
+  to {
+    transform: translateY(-1.75rem);
+  }
+}
+
+/* Scroll-linked parallax where the browser supports view timelines. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .drift {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
+/* Reveal variant: scales up from slightly smaller, for large banners. */
+.reveal[data-reveal="hidden"][data-variant="scale"] {
+  opacity: 0;
+  transform: translateY(2rem) scale(0.96);
+}
+
+/* Service illustrations and map pins. */
+@keyframes art-float {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes art-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes art-bar {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes art-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes art-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+@keyframes art-rise {
+  0%,
+  100% {
+    transform: translateY(6px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+@keyframes art-cursor {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(46px, -26px);
+  }
+}
+@keyframes pin-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.art-float {
+  animation: art-float 5s ease-in-out infinite;
+}
+.art-spin {
+  animation: art-spin 14s linear infinite;
+}
+.art-spin-reverse {
+  animation: art-spin 10s linear infinite reverse;
+}
+.art-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: art-bar 1.2s var(--ease-out-expo) both;
+}
+.art-draw {
+  stroke-dasharray: 1;
+  animation: art-draw 2.4s ease-in-out infinite alternate;
+}
+.art-flow {
+  animation: art-flow 1.4s linear infinite;
+}
+.art-rise {
+  animation: art-rise 3s ease-in-out infinite;
+}
+.art-cursor {
+  animation: art-cursor 6s ease-in-out infinite;
+}
+.pin-pulse {
+  animation: pin-pulse 2.6s ease-out infinite;
+}
+.marquee {
+  animation: marquee var(--marquee-duration, 50s) linear infinite;
+}
+.marquee-reverse {
+  animation-direction: reverse;
+}
+.marquee-pause:hover .marquee {
+  animation-play-state: paused;
+}
+
+/* The scrolling tech rows stand still (and stay readable) without motion. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none !important;
+  }
+}
+
+/* Hovering a card makes its illustration move faster. */
+.group:hover .art-spin {
+  animation-duration: 5s;
+}
+.group:hover .art-spin-reverse {
+  animation-duration: 4s;
+}
+.group:hover .art-flow {
+  animation-duration: 0.6s;
+}
+.group:hover .art-float {
+  animation-duration: 2.8s;
+}

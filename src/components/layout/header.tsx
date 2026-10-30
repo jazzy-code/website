@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { LogoLink } from "./logo-link";
 import { navItems } from "@/config/site";
 import { LanguageSwitcher } from "./language-switcher";
 import { MobileMenu } from "./mobile-menu";
@@ -11,7 +12,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
       <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Image src="/logos/inline-logo-white.png" alt="Logo" width={140} height={30} /> 
+        <LogoLink className="flex items-center gap-2.5">
+          <Image
+            src="/logos/inline-logo-white.png"
+            alt="Jazzy Code"
+            width={140}
+            height={29}
+            priority
+          />
+        </LogoLink>
         <nav aria-label={t("label")} className="hidden md:block">
           <ul className="flex items-center gap-8 text-sm">
             {navItems.map(({ key, href }) => (

@@ -4,9 +4,11 @@ import { useEffect, useRef, type ComponentProps, type CSSProperties } from "reac
 import { cn } from "@/lib/utils";
 
 type RevealProps = ComponentProps<"div"> & {
-  as?: "div" | "section" | "article" | "li";
+  as?: "div" | "section" | "article" | "li" | "aside";
   /** Delay in ms, e.g. to stagger cards in a grid. */
   delay?: number;
+  /** "scale" also grows the content slightly; meant for large banners. */
+  variant?: "lift" | "scale";
 };
 
 /**
@@ -20,6 +22,7 @@ type RevealProps = ComponentProps<"div"> & {
 export function Reveal({
   as: Tag = "div",
   delay = 0,
+  variant = "lift",
   className,
   style,
   ...props
@@ -62,6 +65,7 @@ export function Reveal({
   return (
     <Component
       ref={ref}
+      data-variant={variant}
       className={cn("reveal", className)}
       style={{ "--reveal-delay": `${delay}ms`, ...style } as CSSProperties}
       {...props}

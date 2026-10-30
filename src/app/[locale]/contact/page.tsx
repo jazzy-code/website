@@ -3,8 +3,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { siGithub } from "simple-icons";
 import { Container } from "@/components/site/container";
-import { SectionHeading } from "@/components/site/section-heading";
+import { PageHero } from "@/components/site/page-hero";
+import { Reveal } from "@/components/site/reveal";
+import { Section } from "@/components/site/section";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { routing } from "@/i18n/routing";
@@ -27,60 +30,47 @@ export default async function ContactPage({
   const t = await getTranslations("Contact");
 
   const others = [
-    { label: "LinkedIn", href: siteConfig.social.linkedin },
-    { label: "GitHub", href: siteConfig.social.github },
+    { label: "LinkedIn", href: siteConfig.social.linkedin, icon: null },
+    { label: "GitHub", href: siteConfig.social.github, icon: siGithub },
   ];
 
   return (
-    <Container className="py-16 sm:py-24">
-      <SectionHeading
-        as="h1"
-        eyebrow={t("eyebrow")}
-        title={t("title")}
-        description={t("description")}
-      />
+    <>
+      <PageHero title={t("title")} description={t("description")} />
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-        <div className="grid gap-6">
+      <Section tone="light" className="pt-16 sm:pt-20">
+        <Container className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">
           {/* WhatsApp is hidden for now (the number is not shown publicly).
-          <section className="surface p-6 sm:p-8">
-            <h2 className="font-display text-2xl font-semibold">
-              {t("whatsappTitle")}
-            </h2>
-            <p className="mt-2 text-muted-foreground">{t("whatsappText")}</p>
-            <p className="mt-6 font-display text-3xl font-semibold tracking-tight text-brand-soft">
-              {siteConfig.whatsapp.display}
-            </p>
-            <Button
-              asChild
-              size="lg"
-              className="mt-6 h-auto min-h-12 py-3 text-center whitespace-normal"
-            >
-              <a
-                href={whatsappUrl(t("whatsappMessage"))}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t("whatsappButton")}
-                <ArrowUpRightIcon aria-hidden="true" />
-                <span className="sr-only">{t("newTab")}</span>
-              </a>
-            </Button>
+          <section className="...">
+            <h2>{t("whatsappTitle")}</h2>
+            <p>{t("whatsappText")}</p>
+            <p>{siteConfig.whatsapp.display}</p>
+            <a href={whatsappUrl(t("whatsappMessage"))} target="_blank" rel="noopener noreferrer">
+              {t("whatsappButton")}
+              <span className="sr-only">{t("newTab")}</span>
+            </a>
           </section> */}
 
           {siteConfig.email && (
-            <section className="surface p-6 sm:p-8">
-              <h2 className="font-display text-2xl font-semibold">
+            <Reveal
+              as="section"
+              className="relative overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,#3b0a63_0%,#150821_70%)] p-8 text-white sm:p-12"
+            >
+              <MailIcon
+                aria-hidden="true"
+                className="size-10 text-[#c79bff]"
+              />
+              <h2 className="mt-6 font-display text-3xl font-semibold tracking-tight">
                 {t("emailTitle")}
               </h2>
-              <p className="mt-2 text-muted-foreground">{t("emailText")}</p>
-              <p className="mt-6 font-display text-2xl font-semibold tracking-tight break-all text-brand-soft sm:text-3xl">
+              <p className="mt-3 max-w-md text-white/75">{t("emailText")}</p>
+              <p className="mt-8 font-display text-2xl font-semibold tracking-tight break-all text-[#c79bff] sm:text-3xl">
                 {siteConfig.email}
               </p>
               <Button
                 asChild
                 size="lg"
-                className="mt-6 h-auto min-h-12 py-3 text-center whitespace-normal"
+                className="mt-8 h-auto min-h-12 bg-white py-3 text-center whitespace-normal text-[#150821] shadow-none hover:bg-white/90"
               >
                 <a
                   href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(
@@ -91,32 +81,56 @@ export default async function ContactPage({
                   {t("emailButton")}
                 </a>
               </Button>
-            </section>
+            </Reveal>
           )}
-        </div>
 
-        <section className="surface p-6 sm:p-8 lg:self-start">
-          <h2 className="font-display text-2xl font-semibold">
-            {t("otherTitle")}
-          </h2>
-          <ul className="mt-4 grid gap-3">
-            {others.map(({ label, href }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-lg text-brand-soft underline-offset-4 hover:underline"
-                >
-                  {label}
-                  <ArrowUpRightIcon className="size-4" aria-hidden="true" />
-                  <span className="sr-only">{t("newTab")}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
-    </Container>
+          <Reveal
+            as="section"
+            delay={120}
+            className="rounded-[2rem] bg-[linear-gradient(155deg,#ece3f8_0%,#ffffff_75%)] p-8 sm:p-10 lg:self-start"
+          >
+            <h2 className="font-display text-2xl font-semibold">
+              {t("otherTitle")}
+            </h2>
+            <ul className="mt-6 grid gap-3">
+              {others.map(({ label, href, icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                  >
+                    {icon ? (
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        className="size-6 shrink-0"
+                        fill={`#${icon.hex}`}
+                      >
+                        <path d={icon.path} />
+                      </svg>
+                    ) : (
+                      <span
+                        aria-hidden="true"
+                        className="flex size-6 shrink-0 items-center justify-center rounded-md bg-[#0a66c2] text-xs font-bold text-white"
+                      >
+                        in
+                      </span>
+                    )}
+                    <span className="flex-1 text-lg font-medium">{label}</span>
+                    <ArrowUpRightIcon
+                      aria-hidden="true"
+                      className="size-4 text-brand-soft"
+                    />
+                    <span className="sr-only">{t("newTab")}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </Container>
+      </Section>
+    </>
   );
 }
