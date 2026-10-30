@@ -36,7 +36,7 @@ export default async function ProjectsPage({
       <PageHero title={t("title")} description={t("description")} />
       <Section className="pt-4 sm:pt-4">
         <Container>
-          <ul aria-label={t("listLabel")} className="grid gap-8">
+          <ul aria-label={t("listLabel")} className="grid grid-cols-1 gap-8">
             {projects.map((project, i) => (
               <Reveal as="li" key={project.slug} variant="scale">
                 <ProjectBanner

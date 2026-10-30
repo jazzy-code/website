@@ -24,7 +24,7 @@ function Row({
             <li
               key={`${copy}-${item}`}
               aria-hidden={copy === 1 || undefined}
-              className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-3.5 font-display text-lg font-medium whitespace-nowrap shadow-sm"
+              className="flex items-center gap-2.5 rounded-2xl border border-border bg-card px-4 py-2.5 font-display text-base font-medium whitespace-nowrap shadow-sm sm:gap-3 sm:px-5 sm:py-3.5 sm:text-lg"
             >
               <TechIcon name={item} />
               {item}
@@ -36,13 +36,40 @@ function Row({
   );
 }
 
-/** Two rows of technology tiles drifting in opposite directions. */
+function split<T>(items: readonly T[], rows: number) {
+  const size = Math.ceil(items.length / rows);
+  return Array.from({ length: rows }, (_, i) =>
+    items.slice(i * size, (i + 1) * size),
+  ).filter((row) => row.length > 0);
+}
+
+/**
+ * Rows of technology tiles drifting in opposite directions: four on phones,
+ * so every technology fits on screen sooner, and two from `sm` up.
+ */
 export function TechMarquee({ items }: { items: readonly string[] }) {
-  const mid = Math.ceil(items.length / 2);
   return (
-    <div className="grid gap-3">
-      <Row items={items.slice(0, mid)} duration="55s" />
-      <Row items={items.slice(mid)} reverse duration="65s" />
-    </div>
+    <>
+      <div className="grid gap-2.5 sm:hidden">
+        {split(items, 4).map((row, i) => (
+          <Row
+            key={row[0]}
+            items={row}
+            reverse={i % 2 === 1}
+            duration={`${34 + i * 6}s`}
+          />
+        ))}
+      </div>
+      <div className="hidden gap-3 sm:grid">
+        {split(items, 2).map((row, i) => (
+          <Row
+            key={row[0]}
+            items={row}
+            reverse={i % 2 === 1}
+            duration={i === 0 ? "55s" : "65s"}
+          />
+        ))}
+      </div>
+    </>
   );
 }

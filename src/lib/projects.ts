@@ -85,6 +85,26 @@ export function getDeviceScreens(locale: Locale): DeviceScreen[] {
   });
 }
 
+/** One screen of a project for the hero carousel; the phone capture is optional. */
+export type ShowcaseScreen = {
+  slug: string;
+  name: string;
+  alt: string;
+  desktop: ImageFile;
+  mobile?: ImageFile;
+};
+
+/** Every project that has at least one screen, preferring a screen with a phone capture. */
+export function getShowcaseScreens(locale: Locale): ShowcaseScreen[] {
+  return getProjects(locale).flatMap(({ slug, name, screens }) => {
+    const screen = screens.find(({ mobile }) => mobile) ?? screens[0];
+    if (!screen) return [];
+    return [
+      { slug, name, alt: screen.alt, desktop: screen.desktop, mobile: screen.mobile },
+    ];
+  });
+}
+
 /** Every technology used across the projects, without repeats, in first-seen order. */
 export function getAllTechnologies(): string[] {
   return [...new Set(projects.flatMap(({ technologies }) => technologies ?? []))];

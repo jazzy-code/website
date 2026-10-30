@@ -15,8 +15,8 @@ const dots = worldMap.rows
 
 function project(lon: number, lat: number) {
   return {
-    x: (lon - worldMap.lon0) / worldMap.step + 0.5,
-    y: (worldMap.lat0 - lat) / worldMap.step + 0.5,
+    x: ((lon - worldMap.lon0) / worldMap.step + 0.5) / cols,
+    y: ((worldMap.lat0 - lat) / worldMap.step + 0.5) / rows,
   };
 }
 
@@ -28,9 +28,10 @@ const labelPosition = {
 } as const;
 
 /**
- * Dotted world map with a pulsing pin on each
- * country. Pure SVG + CSS; the visible labels are decorative because the
- * same countries are listed as text next to the map.
+ * Dotted world map with a pulsing pin on each country. The land is SVG and
+ * scales with the width; the pins and labels are HTML so they keep a
+ * readable size even on a phone. Decorative: the same countries are listed
+ * as text next to the map.
  */
 export function WorldMap({
   countries,
@@ -43,14 +44,10 @@ export function WorldMap({
 }) {
   return (
     <div
-      className={cn(
-        "relative w-full overflow-hidden aspect-[80/72] sm:aspect-[181/72]",
-        className,
-      )}
+      className={cn("relative w-full", className)}
+      style={{ aspectRatio: `${cols} / ${rows}` }}
       aria-hidden="true"
     >
-      {/* On phones only the Americas and Spain are in view, so the pins stay legible. */}
-      <div className="absolute top-0 left-[-22.5%] h-full w-[226%] sm:left-0 sm:w-full">
       <svg viewBox={`0 0 ${cols} ${rows}`} className="absolute inset-0 size-full">
         <path
           d={dots}
@@ -60,39 +57,33 @@ export function WorldMap({
           strokeLinecap="round"
           className="text-white/25"
         />
-        {countries.map(({ id, lon, lat }, i) => {
-          const { x, y } = project(lon, lat);
-          return (
-            <g key={id} style={{ transformOrigin: `${x}px ${y}px` }}>
-              <circle
-                cx={x}
-                cy={y}
-                r={1.5}
-                className="pin-pulse fill-brand-soft"
-                style={{ animationDelay: `${i * 350}ms`, transformOrigin: `${x}px ${y}px` }}
-              />
-              <circle cx={x} cy={y} r={1.05} className="fill-brand-soft" />
-              <circle cx={x} cy={y} r={0.45} className="fill-background" />
-            </g>
-          );
-        })}
       </svg>
-      {countries.map(({ id, lon, lat, name, label = "top" }) => {
+      {countries.map(({ id, lon, lat, name, label = "top" }, i) => {
         const { x, y } = project(lon, lat);
         return (
           <span
             key={id}
-            className={cn(
-              "absolute hidden rounded-full border border-white/10 bg-background/80 px-2.5 py-0.5 text-[11px] font-medium whitespace-nowrap text-foreground backdrop-blur sm:block",
-              labelPosition[label],
-            )}
-            style={{ left: `${(x / cols) * 100}%`, top: `${(y / rows) * 100}%` }}
+            className="absolute"
+            style={{ left: `${x * 100}%`, top: `${y * 100}%` }}
           >
-            {name[locale]}
+            <span className="absolute top-0 left-0 block size-3.5 -translate-x-1/2 -translate-y-1/2 sm:size-5">
+              <span
+                className="pin-ring absolute inset-0 rounded-full bg-brand-soft/60"
+                style={{ animationDelay: `${i * 350}ms` }}
+              />
+              <span className="absolute inset-[22%] rounded-full bg-brand-soft ring-2 ring-background" />
+            </span>
+            <span
+              className={cn(
+                "absolute hidden rounded-full border border-white/10 bg-background/80 px-2.5 py-0.5 text-[11px] font-medium whitespace-nowrap text-foreground backdrop-blur md:block",
+                labelPosition[label],
+              )}
+            >
+              {name[locale]}
+            </span>
           </span>
         );
       })}
-      </div>
     </div>
   );
 }

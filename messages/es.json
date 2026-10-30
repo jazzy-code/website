@@ -30,7 +30,10 @@
     "contactLabel": "Contacto directo",
     "email": "Correo",
     "whatsapp": "WhatsApp",
-    "newTab": "(se abre en una pestaña nueva)"
+    "newTab": "(se abre en una pestaña nueva)",
+    "tagline": "Agencia de desarrollo de software",
+    "exploreTitle": "Explorar",
+    "contactTitle": "Contacto"
   },
   "Home": {
     "eyebrow": "Agencia de desarrollo de software",
@@ -75,7 +78,14 @@
     "mapTitle": "Clientes en {count} países",
     "mapDescription": "Desde España y Andorra hasta América, construimos software para equipos estén donde estén.",
     "mapList": "Países",
-    "mockNote": "Contenido de ejemplo"
+    "mockNote": "Contenido de ejemplo",
+    "carouselLabel": "Proyectos destacados",
+    "carouselPrev": "Proyecto anterior",
+    "carouselNext": "Proyecto siguiente",
+    "carouselPause": "Pausar la rotación automática",
+    "carouselPlay": "Iniciar la rotación automática",
+    "carouselSlide": "{current} de {total}: {name}",
+    "carouselGoTo": "Mostrar {name}"
   },
   "Cta": {
     "title": "¿Tienes una idea o un proceso que digitalizar?",

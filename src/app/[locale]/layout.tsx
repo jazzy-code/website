@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -19,6 +19,14 @@ const spaceGrotesk = Space_Grotesk({
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // Stops phones from zooming the page out to fit wide content; users can
+  // still pinch-zoom in.
+  minimumScale: 1,
+};
 
 export async function generateMetadata({
   params,

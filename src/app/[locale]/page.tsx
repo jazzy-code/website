@@ -8,7 +8,7 @@ import { ClientsStrip } from "@/components/site/clients-strip";
 import { ContactCta } from "@/components/site/contact-cta";
 import { Container } from "@/components/site/container";
 import { DeviceShowcase } from "@/components/site/device-showcase";
-import { HeroShowcase } from "@/components/site/hero-showcase";
+import { HeroCarousel } from "@/components/site/hero-carousel";
 import { JsonLd } from "@/components/site/json-ld";
 import { ProjectBanner } from "@/components/site/project-banner";
 import { Reveal } from "@/components/site/reveal";
@@ -24,6 +24,7 @@ import {
   getAllTechnologies,
   getDeviceScreens,
   getFeaturedProjects,
+  getShowcaseScreens,
 } from "@/lib/projects";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
 
@@ -41,6 +42,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const meta = await getTranslations("Metadata");
   const featured = getFeaturedProjects(locale);
   const deviceScreens = getDeviceScreens(locale);
+  const showcase = getShowcaseScreens(locale);
   const technologies = getAllTechnologies();
 
   return (
@@ -74,7 +76,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             </Button>
           </div>
         </Container>
-        {deviceScreens.length > 0 && <HeroShowcase screens={deviceScreens} />}
+        <HeroCarousel items={showcase} />
         <Container>
           <ClientsStrip />
         </Container>
@@ -91,7 +93,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
           <div className="mt-12">
             <ServicesGrid locale={locale} />
           </div>
-          <Button asChild variant="link" className="mt-8 -ml-5">
+          <Button asChild variant="link" className="mt-8 -ml-4 sm:-ml-5">
             <Link href="/services">
               {t("servicesLink")}
               <ArrowRightIcon aria-hidden="true" />
@@ -103,7 +105,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <Section>
         <Container>
           <SectionHeading title={t("projectsTitle")} />
-          <ul className="mt-12 grid gap-8">
+          <ul className="mt-12 grid grid-cols-1 gap-8">
             {featured.map((project, i) => (
               <Reveal as="li" key={project.slug} variant="scale">
                 <ProjectBanner
@@ -114,7 +116,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
               </Reveal>
             ))}
           </ul>
-          <Button asChild variant="link" className="mt-8 -ml-5">
+          <Button asChild variant="link" className="mt-8 -ml-4 sm:-ml-5">
             <Link href="/projects">
               {t("projectsLink")}
               <ArrowRightIcon aria-hidden="true" />

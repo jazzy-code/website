@@ -14,9 +14,11 @@ function Frame({ children }: { children: ReactNode }) {
   return (
     <svg
       viewBox="0 0 320 180"
+      width="320"
+      height="180"
       role="presentation"
       aria-hidden="true"
-      className="size-full"
+      className="block size-full"
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"

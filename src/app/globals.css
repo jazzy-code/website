@@ -81,11 +81,14 @@
 }
 
 html {
+  /* Never let a stray wide element pan the page sideways on a phone. */
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
 }
 
 body {
+  overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
@@ -272,10 +275,10 @@ body::after {
 
 @keyframes drift {
   from {
-    transform: translateY(1.75rem);
+    transform: translateY(0.9rem);
   }
   to {
-    transform: translateY(-1.75rem);
+    transform: translateY(-0.9rem);
   }
 }
 
@@ -389,6 +392,9 @@ body::after {
   animation: art-cursor 6s ease-in-out infinite;
 }
 .pin-pulse {
+  animation: pin-pulse 2.6s ease-out infinite;
+}
+.pin-ring {
   animation: pin-pulse 2.6s ease-out infinite;
 }
 .marquee {

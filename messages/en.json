@@ -30,7 +30,10 @@
     "contactLabel": "Direct contact",
     "email": "Email",
     "whatsapp": "WhatsApp",
-    "newTab": "(opens in a new tab)"
+    "newTab": "(opens in a new tab)",
+    "tagline": "Software development agency",
+    "exploreTitle": "Explore",
+    "contactTitle": "Contact"
   },
   "Home": {
     "eyebrow": "Software development agency",
@@ -75,7 +78,14 @@
     "mapTitle": "Clients in {count} countries",
     "mapDescription": "From Spain and Andorra to the Americas, we build software for teams wherever they are.",
     "mapList": "Countries",
-    "mockNote": "Demo content"
+    "mockNote": "Demo content",
+    "carouselLabel": "Featured projects",
+    "carouselPrev": "Previous project",
+    "carouselNext": "Next project",
+    "carouselPause": "Pause automatic rotation",
+    "carouselPlay": "Start automatic rotation",
+    "carouselSlide": "{current} of {total}: {name}",
+    "carouselGoTo": "Show {name}"
   },
   "Cta": {
     "title": "Have an idea or a process to digitize?",

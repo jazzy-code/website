@@ -88,7 +88,7 @@ export function DeviceShowcase({ items, children }: DeviceShowcaseProps) {
             ))}
           </div>
         </BrowserFrame>
-        <div className="absolute right-4 bottom-0 w-[22%] max-w-44 sm:right-8">
+        <div className="absolute right-2 bottom-0 w-[32%] max-w-44 sm:right-8 sm:w-[24%]">
           <PhoneFrame>
             <div className="relative aspect-[417/829]">
               {items.map((item, i) => (
