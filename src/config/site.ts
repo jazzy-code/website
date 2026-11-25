@@ -1,17 +1,21 @@
+/** Production domain; canonical URLs, the sitemap and Open Graph images use it. */
+const PRODUCTION_URL = "https://jazzycode.com";
+
 /**
- * Public site URL: explicit NEXT_PUBLIC_SITE_URL first (set it once the final
- * domain exists), then the Vercel production URL, then localhost.
+ * Public site URL: NEXT_PUBLIC_SITE_URL when set (e.g. to test another
+ * domain), otherwise the production domain in builds and localhost in dev.
  */
 function resolveSiteUrl() {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
-  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  return vercel ? `https://${vercel}` : "http://localhost:3000";
+  return process.env.NODE_ENV === "production"
+    ? PRODUCTION_URL
+    : "http://localhost:3000";
 }
 
 export const siteConfig = {
   name: "Jazzy Code",
   url: resolveSiteUrl(),
-  // Temporary test address; NEXT_PUBLIC_CONTACT_EMAIL overrides it.
+  // Public contact address; NEXT_PUBLIC_CONTACT_EMAIL overrides it.
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@jazzycode.com",
   // Not shown anywhere for now (WhatsApp UI is commented out).
   whatsapp: { number: "524111186290", display: "+52 411 118 6290" },

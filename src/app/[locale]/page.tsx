@@ -12,7 +12,6 @@ import { HeroCarousel } from "@/components/site/hero-carousel";
 import { JsonLd } from "@/components/site/json-ld";
 import { ProjectBanner } from "@/components/site/project-banner";
 import { Reveal } from "@/components/site/reveal";
-import { ReviewsSection } from "@/components/site/reviews-section";
 import { Section } from "@/components/site/section";
 import { SectionHeading } from "@/components/site/section-heading";
 import { ServicesGrid } from "@/components/site/services-grid";
@@ -182,7 +181,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         </Container>
       </Section>
 
-      {/* <ReviewsSection locale={locale} /> */}
+      {/* Reviews are hidden until there are real ones: import ReviewsSection
+          from "@/components/site/reviews-section" and render it here. */}
 
       <ContactCta />
     </>

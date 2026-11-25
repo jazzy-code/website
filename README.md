@@ -46,15 +46,18 @@ English is the default locale and has no prefix; Spanish lives under `/es`.
 
 ## Environment variables
 
-Copy `.env.example` to `.env.local` for local overrides. Both are optional:
+Copy `.env.example` to `.env.local` for local overrides. All are optional:
 
-- `NEXT_PUBLIC_SITE_URL` — final public URL. On Vercel, the production URL is
-  used when it is empty.
-- `NEXT_PUBLIC_CONTACT_EMAIL` — contact email. A temporary test address is used
-  when it is empty.
+- `NEXT_PUBLIC_SITE_URL` — public URL for metadata. Builds default to
+  `https://jazzycode.com`, `pnpm dev` to `http://localhost:3000`.
+- `NEXT_PUBLIC_CONTACT_EMAIL` — contact email (default `hello@jazzycode.com`).
+- `NEXT_PUBLIC_MOCK_CONTENT` — `true` shows the demo clients/reviews outside dev.
 
 ## Deploying on Vercel
 
 Import the repository; the defaults work (framework Next.js, `pnpm install`,
-`pnpm build`). Set `NEXT_PUBLIC_SITE_URL` when a custom domain is attached so
-canonical URLs, the sitemap and social images use it.
+`pnpm build`). Attach the `jazzycode.com` domain in the Vercel project.
+
+## More documentation
+
+Start with `CLAUDE.md` (rules, map, gotchas), then `docs/`.
