@@ -10,16 +10,13 @@ import { Reveal } from "@/components/site/reveal";
 import { Section } from "@/components/site/section";
 import { routing } from "@/i18n/routing";
 import { getProjects } from "@/lib/projects";
-import { buildMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/projects">): Promise<Metadata> {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) return {};
-  const t = await getTranslations({ locale, namespace: "Projects" });
-
-  return buildMetadata(locale, "/projects", t("title"), t("description"));
+  return pageMetadata(locale, "Projects", "/projects");
 }
 
 export default async function ProjectsPage({

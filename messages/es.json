@@ -97,7 +97,7 @@
     "contact": "Página de contacto"
   },
   "Services": {
-    "metaTitle": "Servicios",
+    "metaTitle": "Servicios de desarrollo de software",
     "metaDescription": "Servicios de software a medida de Jazzy Code: sitios y aplicaciones web, software a medida, dashboards, APIs, automatizaciones y soluciones en la nube.",
     "eyebrow": "Servicios",
     "title": "Servicios",
@@ -111,7 +111,7 @@
   },
   "Contact": {
     "metaTitle": "Contacto",
-    "metaDescription": "Contacta a Jazzy Code por correo para conversar sobre tu proyecto.",
+    "metaDescription": "Contacta a Jazzy Code por correo sobre tu proyecto: sitio web, aplicación web, software a medida, automatización o solución en la nube.",
     "eyebrow": "Contacto",
     "title": "Conversemos sobre tu proyecto",
     "description": "La forma más directa de contactar a Jazzy Code es por correo. Cuéntanos qué necesitas y lo platicamos.",
@@ -143,7 +143,7 @@
     "allProjects": "Todos los proyectos"
   },
   "CV": {
-    "metaTitle": "CV",
+    "metaTitle": "CV de Javier Torres",
     "metaDescription": "Currículum de Javier Torres, Ingeniero de Software Fullstack: experiencia, habilidades y formación.",
     "eyebrow": "Currículum",
     "download": "Descargar CV (PDF)",
@@ -179,7 +179,9 @@
     "navLabel": "Más proyectos",
     "previous": "Proyecto anterior",
     "next": "Proyecto siguiente",
-    "viewProject": "Ver proyecto"
+    "viewProject": "Ver proyecto",
+    "metaTitle": "Proyectos de desarrollo de software",
+    "metaDescription": "Proyectos de Jazzy Code: sitios web, aplicaciones web y sistemas a medida. Conoce los detalles y las pantallas de cada uno."
   },
   "NotFound": {
     "title": "Página no encontrada",
@@ -187,7 +189,7 @@
     "back": "Volver al inicio"
   },
   "Apps": {
-    "metaTitle": "Apps",
+    "metaTitle": "Nuestras apps",
     "metaDescription": "Apps creadas por Jazzy Code: Scary Split para dividir gastos compartidos y Chill PDF para editar archivos PDF en tu navegador.",
     "eyebrow": "Hecho por Jazzy Code",
     "titleStart": "Nuestras propias",

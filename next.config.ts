@@ -23,6 +23,18 @@ const nextConfig: NextConfig = {
     // 90 keeps the small interface text of the app captures sharp.
     qualities: [75, 90],
   },
+  // "/" is the English URL. next-intl redirects "/en" temporarily; make it
+  // permanent. Open Graph images do live under "/en", so they are left alone.
+  async redirects() {
+    return [
+      { source: "/en", destination: "/", permanent: true },
+      {
+        source: "/en/:path((?!.*opengraph-image).*)",
+        destination: "/:path",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

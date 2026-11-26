@@ -74,7 +74,7 @@ export function buildMetadata(
  */
 export async function pageMetadata(
   locale: string,
-  namespace: "Apps" | "Services" | "Contact" | "Profile" | "CV",
+  namespace: "Projects" | "Apps" | "Services" | "Contact" | "Profile" | "CV",
   href: string,
 ): Promise<Metadata> {
   if (!hasLocale(routing.locales, locale)) return {};

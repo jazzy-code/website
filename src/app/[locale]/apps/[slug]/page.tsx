@@ -25,7 +25,11 @@ import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { getApp, getApps, getAppSlugs } from "@/lib/apps";
 import { buildMetadata } from "@/lib/seo";
-import { appJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
+import {
+  appJsonLd,
+  breadcrumbJsonLd,
+  videoJsonLd,
+} from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -41,7 +45,12 @@ export async function generateMetadata({
   const app = getApp(slug, locale);
   if (!app) return {};
 
-  return buildMetadata(locale, `/apps/${slug}`, app.name, app.summary);
+  return buildMetadata(
+    locale,
+    `/apps/${slug}`,
+    `${app.name}: ${app.tagline}`,
+    app.summary,
+  );
 }
 
 export default async function AppPage({
@@ -61,6 +70,7 @@ export default async function AppPage({
   return (
     <>
       <JsonLd data={appJsonLd(locale, app)} />
+      <JsonLd data={videoJsonLd(app)} />
       <JsonLd
         data={breadcrumbJsonLd(
           [

@@ -97,7 +97,7 @@
     "contact": "Contact page"
   },
   "Services": {
-    "metaTitle": "Services",
+    "metaTitle": "Software development services",
     "metaDescription": "Custom software services by Jazzy Code: websites and web applications, custom software, dashboards, APIs, automations, and cloud solutions.",
     "eyebrow": "Services",
     "title": "Services",
@@ -111,7 +111,7 @@
   },
   "Contact": {
     "metaTitle": "Contact",
-    "metaDescription": "Contact Jazzy Code by email to talk about your project.",
+    "metaDescription": "Contact Jazzy Code by email about your project: a website, a web application, custom software, an automation or a cloud solution.",
     "eyebrow": "Contact",
     "title": "Let's talk about your project",
     "description": "The most direct way to reach Jazzy Code is email. Tell us what you need and we'll take it from there.",
@@ -143,7 +143,7 @@
     "allProjects": "All projects"
   },
   "CV": {
-    "metaTitle": "CV",
+    "metaTitle": "Javier Torres CV",
     "metaDescription": "Curriculum vitae of Javier Torres, Fullstack Software Engineer: experience, skills, and education.",
     "eyebrow": "Curriculum vitae",
     "download": "Download CV (PDF)",
@@ -179,7 +179,9 @@
     "navLabel": "More projects",
     "previous": "Previous project",
     "next": "Next project",
-    "viewProject": "View project"
+    "viewProject": "View project",
+    "metaTitle": "Software development projects",
+    "metaDescription": "Projects built by Jazzy Code: websites, web applications and custom systems. See the details and screens of each one."
   },
   "NotFound": {
     "title": "Page not found",
@@ -187,7 +189,7 @@
     "back": "Back to home"
   },
   "Apps": {
-    "metaTitle": "Apps",
+    "metaTitle": "Our apps",
     "metaDescription": "Apps made by Jazzy Code: Scary Split to split shared expenses and Chill PDF to edit PDF files in your browser.",
     "eyebrow": "Made by Jazzy Code",
     "titleStart": "Our own",

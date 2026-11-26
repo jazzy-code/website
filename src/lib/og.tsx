@@ -1,6 +1,9 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { hasLocale } from "next-intl";
 import { ImageResponse } from "next/og";
+import { getTranslations } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
@@ -113,4 +116,26 @@ export async function renderOgImage({
     ),
     ogSize,
   );
+}
+
+/**
+ * Card of a section page, from its `metaTitle` and `metaDescription`. Each
+ * section needs its own `opengraph-image.tsx`: a page that sets `openGraph`
+ * does not inherit the home one.
+ */
+export async function renderSectionOgImage(
+  params: Promise<{ locale: string }>,
+  namespace: "Projects" | "Apps" | "Services" | "Contact" | "Profile" | "CV",
+) {
+  const { locale } = await params;
+  const lang = hasLocale(routing.locales, locale)
+    ? locale
+    : routing.defaultLocale;
+  const t = await getTranslations({ locale: lang, namespace });
+
+  return renderOgImage({
+    eyebrow: "jazzycode.com",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  });
 }

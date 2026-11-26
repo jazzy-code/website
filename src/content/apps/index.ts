@@ -1,11 +1,16 @@
 import type { App, AppDevice, AppScreen } from "./types";
 
-function video(slug: string, duration: string): App["video"] {
+function video(
+  slug: string,
+  duration: string,
+  uploaded: string,
+): App["video"] {
   const base = `/videos/apps/${slug}`;
   return {
     src: `${base}.mp4`,
     poster: `/images/apps/${slug}/poster.webp`,
     duration,
+    uploaded,
     subtitles: { en: `${base}.en.vtt`, es: `${base}.es.vtt` },
   };
 }
@@ -48,7 +53,7 @@ export const apps: readonly App[] = [
       en: "Log what was spent on a trip, party or night out, and Scary Split works out each share and who has to pay whom.",
       es: "Anota lo que se gastó en un viaje, fiesta o salida y Scary Split calcula cuánto le toca a cada quien y quién le transfiere a quién.",
     },
-    video: video("scary-split", "1:17"),
+    video: video("scary-split", "1:17", "2026-11-26"),
     hero: {
       desktop: {
         src: "/images/apps/scary-split/home-desktop.png",
@@ -221,7 +226,7 @@ export const apps: readonly App[] = [
       en: "Delete, reorder and merge pages, add text and images, and download the result. Your files are processed in your browser.",
       es: "Elimina, reordena y fusiona páginas, agrega texto e imágenes y descarga el resultado. Tus archivos se procesan en tu navegador.",
     },
-    video: video("chill-pdf", "1:17"),
+    video: video("chill-pdf", "1:17", "2026-11-26"),
     hero: {
       desktop: chill(
         "editor",

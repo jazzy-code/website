@@ -57,6 +57,13 @@ from the app's own code). Sitemap and OG images pick it up automatically.
 - The current videos have a Spanish voice-over and Spanish on-screen text. When English
   versions exist, give `video()` a source per locale and drop the default English subtitles.
 
+## SEO
+
+Section pages take their `<title>` and description from `metaTitle` / `metaDescription`
+in `messages/*`, and need an `opengraph-image.tsx` of their own (see
+`renderSectionOgImage`). Icons: `src/app/{favicon.ico,icon.png,apple-icon.png,manifest.ts}`.
+A replaced app video needs its new `uploaded` date.
+
 ## Social pages — `siteConfig.follow`
 
 Jazzy Code's Facebook and Instagram: footer icons, contact page and Organization JSON-LD.

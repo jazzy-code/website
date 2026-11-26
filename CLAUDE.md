@@ -109,7 +109,7 @@ hard-code project data.
 
 ## Verification checklist for UI work
 
-Typecheck, lint (0 warnings), build (53 static pages). Then look at it at 390 px,
+Typecheck, lint (0 warnings), build (68 static pages). Then look at it at 390 px,
 ~800 px and 1280 px, in EN and ES, and confirm no horizontal overflow
 (`document.documentElement.scrollWidth === clientWidth`). Motion must stop under
 `prefers-reduced-motion`.

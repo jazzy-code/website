@@ -6,7 +6,7 @@ import { absoluteUrl } from "@/lib/seo";
 
 const context = "https://schema.org";
 
-/** Only confirmed facts: no logo, address, phone or ratings are declared. */
+/** Only confirmed facts: no address, phone or ratings are declared. */
 function founder(locale: Locale) {
   return {
     "@type": "Person",
@@ -21,6 +21,7 @@ export function organizationJsonLd(locale: Locale, description: string) {
     "@type": "Organization",
     name: siteConfig.name,
     url: absoluteUrl(locale, "/"),
+    logo: new URL("/icon.png", siteConfig.url).toString(),
     description,
     founder: founder(locale),
     sameAs: [siteConfig.follow.facebook, siteConfig.follow.instagram],
@@ -43,6 +44,27 @@ export function appJsonLd(
       name: siteConfig.name,
       url: absoluteUrl(locale, "/"),
     },
+  };
+}
+
+/** Walkthrough video of an app, with a Spanish voice-over. */
+export function videoJsonLd(app: {
+  name: string;
+  summary: string;
+  video: { src: string; poster: string; duration: string; uploaded: string };
+}) {
+  const [minutes, seconds] = app.video.duration.split(":").map(Number);
+
+  return {
+    "@context": context,
+    "@type": "VideoObject",
+    name: app.name,
+    description: app.summary,
+    thumbnailUrl: new URL(app.video.poster, siteConfig.url).toString(),
+    contentUrl: new URL(app.video.src, siteConfig.url).toString(),
+    uploadDate: app.video.uploaded,
+    duration: `PT${minutes}M${seconds}S`,
+    inLanguage: "es",
   };
 }
 

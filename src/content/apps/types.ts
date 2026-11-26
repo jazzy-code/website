@@ -56,6 +56,8 @@ export type App = {
     poster: string;
     /** Length as shown to visitors, e.g. "1:17". */
     duration: string;
+    /** Day the video was first published on this site (YYYY-MM-DD). */
+    uploaded: string;
     subtitles: { en: string; es: string };
   };
   /** Screens of the opening composition. */
