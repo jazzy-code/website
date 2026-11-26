@@ -293,6 +293,117 @@ body::after {
   }
 }
 
+/*
+ * App showreel (see app-showreel.tsx), measured in container units. Each device
+ * is laid out at its largest size and scaled down for the other shots, so a
+ * close up never stretches a smaller picture. Captures are not zoomed.
+ */
+.showreel {
+  position: relative;
+  height: 112cqw;
+  overflow: hidden;
+  --desktop-rest: translate(0, 20cqw) scale(0.88);
+  --desktop-back: translate(6cqw, 28cqw) scale(0.88);
+  --desktop-front: translate(0, 22cqw) scale(1);
+  --phone-width: 52cqw;
+  --phone-rest: translate(68.8cqw, 40cqw) scale(0.6);
+  --phone-close: translate(24cqw, 1cqw) scale(1);
+  --phone-back: translate(70cqw, 54cqw) scale(0.55);
+}
+@container (min-width: 30rem) {
+  .showreel {
+    height: 84cqw;
+    --desktop-rest: translate(0, 7cqw) scale(0.86);
+    --desktop-back: translate(7cqw, 12cqw) scale(0.86);
+    --desktop-front: translate(0, 5cqw) scale(1);
+    --phone-width: 38cqw;
+    --phone-rest: translate(71cqw, 23cqw) scale(0.76);
+    --phone-close: translate(31cqw, 1cqw) scale(1);
+    --phone-back: translate(74cqw, 30cqw) scale(0.66);
+  }
+}
+.showreel-desktop,
+.showreel-phone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+.showreel-desktop {
+  z-index: 1;
+  width: 100cqw;
+  transform: var(--desktop-rest);
+}
+.showreel-phone {
+  z-index: 2;
+  width: var(--phone-width);
+  transform: var(--phone-rest);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .showreel-desktop {
+    animation: showreel-desktop 15s ease-in-out infinite;
+  }
+  .showreel-phone {
+    animation: showreel-phone 15s ease-in-out infinite;
+  }
+  .showreel[data-paused="true"] * {
+    animation-play-state: paused;
+  }
+}
+/* Together, phone close up, together, computer forward, together. */
+@keyframes showreel-desktop {
+  0%,
+  20.4%,
+  51.2%,
+  92.8%,
+  100% {
+    z-index: 1;
+    transform: var(--desktop-rest);
+    filter: none;
+  }
+  28.8%,
+  42.8% {
+    z-index: 1;
+    transform: var(--desktop-back);
+    filter: brightness(0.45);
+  }
+  57.2% {
+    z-index: 1;
+  }
+  59.6% {
+    z-index: 3;
+  }
+  65.6%,
+  82% {
+    z-index: 3;
+    transform: var(--desktop-front);
+    filter: none;
+  }
+  89.2% {
+    z-index: 1;
+  }
+}
+@keyframes showreel-phone {
+  0%,
+  20.4%,
+  51.2%,
+  92.8%,
+  100% {
+    transform: var(--phone-rest);
+    filter: none;
+  }
+  28.8%,
+  42.8% {
+    transform: var(--phone-close);
+    filter: none;
+  }
+  65.6%,
+  82% {
+    transform: var(--phone-back);
+    filter: brightness(0.5);
+  }
+}
+
 /* Reveal variant: scales up from slightly smaller, for large banners. */
 .reveal[data-reveal="hidden"][data-variant="scale"] {
   opacity: 0;
@@ -411,6 +522,43 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .marquee {
     animation: none !important;
+  }
+}
+
+/* Apps pages: drifting color clouds and a light sweeping across a headline. */
+@keyframes aurora {
+  50% {
+    transform: translate(6rem, 3rem) scale(1.2);
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+.aurora {
+  animation: aurora 14s ease-in-out infinite;
+}
+.aurora-slow {
+  animation-duration: 20s;
+  animation-direction: reverse;
+}
+.shimmer {
+  background: linear-gradient(
+      100deg,
+      #c79bff 20%,
+      #6fd3f7 40%,
+      #fcd34d 50%,
+      #c79bff 70%
+    )
+    0 0 / 200% 100%;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s linear infinite;
+}
+@media (forced-colors: active) {
+  .shimmer {
+    color: CanvasText;
   }
 }
 

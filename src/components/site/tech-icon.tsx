@@ -24,11 +24,13 @@ import {
   siSanity,
   siSass,
   siSequelize,
+  siShadcnui,
   siStripe,
   siTailwindcss,
   siTypescript,
   siVite,
   siVuedotjs,
+  siZod,
   type SimpleIcon,
 } from "simple-icons";
 import { cn } from "@/lib/utils";
@@ -71,6 +73,8 @@ const brand: Record<string, SimpleIcon> = {
   Mapbox: siMapbox,
   Clerk: siClerk,
   Prisma: siPrisma,
+  "shadcn/ui": siShadcnui,
+  Zod: siZod,
 };
 
 const generic: Record<string, typeof MailIcon> = {

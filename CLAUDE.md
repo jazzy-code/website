@@ -43,14 +43,14 @@ pnpm typecheck && pnpm lint && pnpm build   # all three must pass; lint has 0 wa
 
 ```
 messages/{en,es}.json        UI texts (namespaces: Metadata, Common, Nav, LanguageSwitcher,
-                             Footer, Home, Cta, Services, Contact, Profile, CV, Projects, NotFound)
-src/app/[locale]/            pages: page.tsx (home), projects/, projects/[slug]/, services/,
+                             Footer, Home, Cta, Services, Contact, Profile, CV, Projects, NotFound, Apps)
+src/app/[locale]/            pages: page.tsx (home), projects/, projects/[slug]/, apps/, apps/[slug]/, services/,
                              profile/, cv/, contact/, not-found.tsx, opengraph-image.tsx
 src/app/{globals.css,sitemap.ts,robots.ts}
 src/proxy.ts                 next-intl routing (locales en/es, as-needed prefix, no detection)
 src/i18n/                    routing.ts, navigation.ts (Link, usePathname), request.ts
 src/config/site.ts           site URL (jazzycode.com), email, social links, CV file, nav items
-src/content/                 DATA, separate from components: projects/, services.ts, profile.ts,
+src/content/                 DATA, separate from components: projects/, apps/, services.ts, profile.ts,
                              clients.ts, reviews.ts, mock.ts, locations.ts, world-map.ts
 src/lib/                     projects.ts (resolve per locale), seo.ts, structured-data.ts,
                              og.tsx, localized.ts (pick), utils.ts (cn)
@@ -68,7 +68,7 @@ hard-code project data.
 
 - Match the surrounding code: comments explain *why*, short, English. Components are
   server components unless they need state/events (`"use client"` only in
-  `hero-carousel`, `device-showcase`, `reveal`, `spotlight-card`, `logo-link`,
+  `hero-carousel`, `device-showcase`, `app-video`, `app-steps`, `app-showreel`, `reveal`, `spotlight-card`, `logo-link`,
   `language-switcher`, `mobile-menu`, `ui/sheet`).
 - Pages call `setRequestLocale(locale)` and validate with `hasLocale` (see any page).
 - Imports use the `@/` alias. Class names via `cn()`.
@@ -109,7 +109,7 @@ hard-code project data.
 
 ## Verification checklist for UI work
 
-Typecheck, lint (0 warnings), build (43 static pages). Then look at it at 390 px,
+Typecheck, lint (0 warnings), build (53 static pages). Then look at it at 390 px,
 ~800 px and 1280 px, in EN and ES, and confirm no horizontal overflow
 (`document.documentElement.scrollWidth === clientWidth`). Motion must stop under
 `prefers-reduced-motion`.

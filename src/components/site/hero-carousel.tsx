@@ -29,7 +29,7 @@ function subscribeToReducedMotion(onChange: () => void) {
 }
 
 /*
- * Roulette-style carousel of every project. The centered slide is the
+ * Roulette-style carousel of the apps and every project. The centered slide is the
  * largest; the ones on each side are smaller, tilted and anchored at the
  * bottom, so they seem to rise from below. It loops forever: swipe or drag,
  * use the arrows (desktop, on hover) or the dots.
@@ -156,6 +156,7 @@ export function HeroCarousel({ items }: { items: readonly ShowcaseScreen[] }) {
                       height={item.desktop.height}
                       sizes="(min-width: 768px) 44rem, 80vw"
                       priority={i === 0}
+                      quality={90}
                       draggable={false}
                       className="h-auto w-full"
                     />
@@ -169,6 +170,7 @@ export function HeroCarousel({ items }: { items: readonly ShowcaseScreen[] }) {
                           width={item.mobile.width}
                           height={item.mobile.height}
                           sizes="(min-width: 768px) 14rem, 26vw"
+                          quality={90}
                           draggable={false}
                           className="h-auto w-full"
                         />
@@ -205,12 +207,12 @@ export function HeroCarousel({ items }: { items: readonly ShowcaseScreen[] }) {
 
       <div className="flex flex-col items-center gap-4 px-4">
         <Link
-          href={`/projects/${current.slug}`}
+          href={current.href}
           className="font-display inline-flex items-center gap-2 text-lg font-semibold text-foreground hover:text-brand-soft"
         >
           {current.name}
           <span className="text-sm font-medium text-brand-soft">
-            {t("viewProject")} →
+            {t(current.kind === "app" ? "viewApp" : "viewProject")} →
           </span>
         </Link>
         {count > 1 && (

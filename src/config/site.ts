@@ -19,6 +19,11 @@ export const siteConfig = {
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@jazzycode.com",
   // Not shown anywhere for now (WhatsApp UI is commented out).
   whatsapp: { number: "524111186290", display: "+52 411 118 6290" },
+  /** Jazzy Code's own pages (LinkedIn and GitHub below are the founder's). */
+  follow: {
+    facebook: "https://www.facebook.com/share/1ADYjSYxU7/",
+    instagram: "https://www.instagram.com/jazzycodemx/",
+  },
   social: {
     linkedin: "https://www.linkedin.com/in/javier-t-b4644319b/",
     github: "https://github.com/javiertorresm2000",
@@ -29,6 +34,7 @@ export const siteConfig = {
 
 export const navItems = [
   { key: "projects", href: "/projects" },
+  { key: "apps", href: "/apps" },
   { key: "services", href: "/services" },
   { key: "profile", href: "/profile" },
   { key: "cv", href: "/cv" },

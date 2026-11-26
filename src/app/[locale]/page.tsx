@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AppsTeaser } from "@/components/site/apps-teaser";
 import { ClientMapSection } from "@/components/site/client-map-section";
 import { ClientsStrip } from "@/components/site/clients-strip";
 import { ContactCta } from "@/components/site/contact-cta";
@@ -25,6 +26,7 @@ import {
   getFeaturedProjects,
   getShowcaseScreens,
 } from "@/lib/projects";
+import { getAppShowcase } from "@/lib/apps";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
 
 const approach = [
@@ -41,7 +43,10 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const meta = await getTranslations("Metadata");
   const featured = getFeaturedProjects(locale);
   const deviceScreens = getDeviceScreens(locale);
-  const showcase = getShowcaseScreens(locale);
+  const showcase = [
+    ...getAppShowcase(locale),
+    ...getShowcaseScreens(locale),
+  ];
   const technologies = getAllTechnologies();
 
   return (
@@ -101,7 +106,9 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         </Container>
       </Section>
 
-      <Section>
+      <AppsTeaser locale={locale} />
+
+      <Section className="pt-0 sm:pt-0">
         <Container>
           <SectionHeading title={t("projectsTitle")} />
           <ul className="mt-12 grid grid-cols-1 gap-8">

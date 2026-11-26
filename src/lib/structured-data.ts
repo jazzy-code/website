@@ -23,6 +23,26 @@ export function organizationJsonLd(locale: Locale, description: string) {
     url: absoluteUrl(locale, "/"),
     description,
     founder: founder(locale),
+    sameAs: [siteConfig.follow.facebook, siteConfig.follow.instagram],
+  };
+}
+
+export function appJsonLd(
+  locale: Locale,
+  app: { slug: string; name: string; summary: string; url: string },
+) {
+  return {
+    "@context": context,
+    "@type": "WebApplication",
+    name: app.name,
+    description: app.summary,
+    url: app.url,
+    mainEntityOfPage: absoluteUrl(locale, `/apps/${app.slug}`),
+    creator: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: absoluteUrl(locale, "/"),
+    },
   };
 }
 

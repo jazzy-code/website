@@ -17,6 +17,9 @@ client logos, mobile fixes) are done. `pnpm typecheck`, `pnpm lint` (0 warnings)
 
 ## Pending / ideas
 
+- **Apps videos in English** (the owner will generate them) and, optionally, Scary Split
+  desktop captures for its "how it works" steps (only the home screen exists on desktop).
+
 - **Real reviews**: fill `src/content/reviews.ts` and render `ReviewsSection` on the home
   page (currently not rendered). Needs the clients' permission.
 - **More clients**: add logos to `src/content/clients.ts` as they are confirmed.

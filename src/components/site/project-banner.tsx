@@ -27,7 +27,12 @@ export function ProjectBanner({
   const tags = project.technologies?.slice(0, 4);
 
   return (
-    <article className="group relative isolate grid overflow-hidden rounded-[2rem] border border-border bg-[radial-gradient(60rem_26rem_at_100%_0%,color-mix(in_oklab,var(--brand)_70%,transparent),transparent_70%),var(--card)] transition-colors duration-500 hover:border-brand-ring lg:grid-cols-[0.8fr_1.2fr]">
+    <article
+      className={cn(
+        "group relative isolate grid overflow-hidden rounded-[2rem] border border-border bg-[radial-gradient(60rem_26rem_at_100%_0%,color-mix(in_oklab,var(--brand)_70%,transparent),transparent_70%),var(--card)] transition-colors duration-500 hover:border-brand-ring",
+        reverse ? "lg:grid-cols-[1.2fr_0.8fr]" : "lg:grid-cols-[0.8fr_1.2fr]",
+      )}
+    >
       <div
         className={cn(
           "flex flex-col justify-center gap-4 p-6 sm:p-10 lg:p-12",

@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { navItems, siteConfig } from "@/config/site";
 // import { whatsappUrl } from "@/lib/contact"; // WhatsApp hidden for now
 import { LogoLink } from "./logo-link";
+import { SocialLinks } from "@/components/site/social-links";
 
 const columnTitle =
   "text-xs font-semibold tracking-widest text-muted-foreground uppercase";
@@ -41,6 +42,8 @@ export function Footer() {
           <p className="max-w-xs text-sm text-muted-foreground">
             {t("tagline")}
           </p>
+          <h2 className={`${columnTitle} mt-4`}>{t("followTitle")}</h2>
+          <SocialLinks newTab={t("newTab")} />
         </div>
 
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">

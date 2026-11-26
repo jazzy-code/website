@@ -1,15 +1,17 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
+import { getAppSlugs } from "@/lib/apps";
 import { getProjectSlugs } from "@/lib/projects";
 import { absoluteUrl } from "@/lib/seo";
 
-const staticPaths = ["/", "/projects", "/services", "/profile", "/cv", "/contact"];
+const staticPaths = ["/", "/projects", "/apps", "/services", "/profile", "/cv", "/contact"];
 
 /** One entry per page and locale, each pointing to its translations. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     ...staticPaths,
     ...getProjectSlugs().map((slug) => `/projects/${slug}`),
+    ...getAppSlugs().map((slug) => `/apps/${slug}`),
   ];
 
   return paths.flatMap((href) =>

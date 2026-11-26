@@ -90,6 +90,9 @@ export type ShowcaseScreen = {
   slug: string;
   name: string;
   alt: string;
+  /** Page the slide leads to, and which text its link uses. */
+  href: string;
+  kind: "app" | "project";
   desktop: ImageFile;
   mobile?: ImageFile;
 };
@@ -100,7 +103,15 @@ export function getShowcaseScreens(locale: Locale): ShowcaseScreen[] {
     const screen = screens.find(({ mobile }) => mobile) ?? screens[0];
     if (!screen) return [];
     return [
-      { slug, name, alt: screen.alt, desktop: screen.desktop, mobile: screen.mobile },
+      {
+        slug,
+        name,
+        alt: screen.alt,
+        href: `/projects/${slug}`,
+        kind: "project",
+        desktop: screen.desktop,
+        mobile: screen.mobile,
+      },
     ];
   });
 }

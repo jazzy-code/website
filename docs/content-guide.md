@@ -42,6 +42,25 @@ are required; `name` is not translated.
 - Slugs in use: `rollstack-docs-website`, `the-world-club`, `alpha-wolves-arena`,
   `rc-multimodal`, `marhaba-marbella`, `recivip`.
 
+## Apps (own products) — `src/content/apps/index.ts`
+
+Apps made by Jazzy Code, shown at `/apps`, `/apps/<slug>` and on the home page. Add an
+object to `apps` (see `types.ts`): public `url`, accent colors, logo, texts in both
+languages, hero screens, "how it works" `steps`, `features` and `technologies` (taken
+from the app's own code). Sitemap and OG images pick it up automatically.
+
+- Images: `public/images/apps/<slug>/` (WebP). Keep captures at native resolution (WebP quality 95): phone 1179×2556, desktop 2880×1800
+  (the sizes are assumed by the `screen()` helper). Use test data only: the repo is public.
+- Video: `public/videos/apps/<slug>.mp4` (720×1280, H.264 CRF 27, AAC, `+faststart`, a few
+  MB) with `<slug>.en.vtt` and `<slug>.es.vtt`, plus `poster.webp` in the images folder.
+  The originals are rendered by the Jazzy Studio project, outside this repo.
+- The current videos have a Spanish voice-over and Spanish on-screen text. When English
+  versions exist, give `video()` a source per locale and drop the default English subtitles.
+
+## Social pages — `siteConfig.follow`
+
+Jazzy Code's Facebook and Instagram: footer icons, contact page and Organization JSON-LD.
+
 ## Clients — `src/content/clients.ts`
 
 Add `{ name, logo: { src, width, height } }` to `realClients`; files in

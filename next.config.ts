@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
     // missing) from the restored Turbopack build cache; build from scratch.
     turbopackFileSystemCacheForBuild: false,
   },
+  images: {
+    // 90 keeps the small interface text of the app captures sharp.
+    qualities: [75, 90],
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

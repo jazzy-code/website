@@ -16,7 +16,8 @@
     "cv": "CV",
     "contact": "Contacto",
     "openMenu": "Abrir menú",
-    "closeMenu": "Cerrar menú"
+    "closeMenu": "Cerrar menú",
+    "apps": "Apps"
   },
   "LanguageSwitcher": {
     "label": "Idioma",
@@ -33,7 +34,8 @@
     "newTab": "(se abre en una pestaña nueva)",
     "tagline": "Agencia de desarrollo de software",
     "exploreTitle": "Explorar",
-    "contactTitle": "Contacto"
+    "contactTitle": "Contacto",
+    "followTitle": "Síguenos"
   },
   "Home": {
     "eyebrow": "Agencia de desarrollo de software",
@@ -79,13 +81,14 @@
     "mapDescription": "Desde España y Andorra hasta América, construimos software para equipos estén donde estén.",
     "mapList": "Países",
     "mockNote": "Contenido de ejemplo",
-    "carouselLabel": "Proyectos destacados",
-    "carouselPrev": "Proyecto anterior",
-    "carouselNext": "Proyecto siguiente",
+    "carouselLabel": "Nuestros productos y proyectos destacados",
+    "carouselPrev": "Anterior",
+    "carouselNext": "Siguiente",
     "carouselPause": "Pausar la rotación automática",
     "carouselPlay": "Iniciar la rotación automática",
     "carouselSlide": "{current} de {total}: {name}",
-    "carouselGoTo": "Mostrar {name}"
+    "carouselGoTo": "Mostrar {name}",
+    "viewApp": "Ver app"
   },
   "Cta": {
     "title": "¿Tienes una idea o un proceso que digitalizar?",
@@ -121,7 +124,8 @@
     "emailButton": "Enviar un correo",
     "emailSubject": "Proyecto con Jazzy Code",
     "otherTitle": "En otros lugares",
-    "newTab": "(se abre en una pestaña nueva)"
+    "newTab": "(se abre en una pestaña nueva)",
+    "followTitle": "Sigue a Jazzy Code"
   },
   "Profile": {
     "metaTitle": "Perfil",
@@ -181,5 +185,39 @@
     "title": "Página no encontrada",
     "description": "Esta página no existe o aún no está disponible.",
     "back": "Volver al inicio"
+  },
+  "Apps": {
+    "metaTitle": "Apps",
+    "metaDescription": "Apps creadas por Jazzy Code: Scary Split para dividir gastos compartidos y Chill PDF para editar archivos PDF en tu navegador.",
+    "eyebrow": "Hecho por Jazzy Code",
+    "titleStart": "Nuestras propias",
+    "titleHighlight": "apps",
+    "description": "Productos que diseñamos y desarrollamos nosotros. Mira cómo funcionan y pruébalos en computadora, tableta o teléfono.",
+    "open": "Abrir {name}",
+    "howLink": "Ver cómo funciona",
+    "watchTitle": "Míralo en acción",
+    "watchText": "Un recorrido corto por {name}, con narración en español y subtítulos.",
+    "play": "Reproducir el video de {name} ({duration})",
+    "videoLabel": "Recorrido por {name}",
+    "subtitlesEn": "Inglés",
+    "subtitlesEs": "Español",
+    "howTitle": "Cómo funciona",
+    "featuresTitle": "Lo que puedes hacer",
+    "devices": "Disponible en",
+    "desktop": "Computadora",
+    "tablet": "Tableta",
+    "phone": "Teléfono",
+    "technologies": "Construida con",
+    "ctaTitle": "Prueba {name}",
+    "ctaText": "Ya está disponible y lista para usarse.",
+    "more": "También de Jazzy Code",
+    "moreLink": "Conoce {name}",
+    "back": "Todas las apps",
+    "teaserTitle": "Nuestros productos",
+    "teaserText": "Además de crear para clientes, diseñamos y desarrollamos nuestras propias apps.",
+    "teaserLink": "Explorar nuestras apps",
+    "newTab": "(se abre en una pestaña nueva)",
+    "pauseShowcase": "Pausar la animación de {name}",
+    "playShowcase": "Reproducir la animación de {name}"
   }
 }

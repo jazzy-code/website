@@ -16,7 +16,8 @@
     "cv": "CV",
     "contact": "Contact",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "apps": "Apps"
   },
   "LanguageSwitcher": {
     "label": "Language",
@@ -33,7 +34,8 @@
     "newTab": "(opens in a new tab)",
     "tagline": "Software development agency",
     "exploreTitle": "Explore",
-    "contactTitle": "Contact"
+    "contactTitle": "Contact",
+    "followTitle": "Follow us"
   },
   "Home": {
     "eyebrow": "Software development agency",
@@ -79,13 +81,14 @@
     "mapDescription": "From Spain and Andorra to the Americas, we build software for teams wherever they are.",
     "mapList": "Countries",
     "mockNote": "Demo content",
-    "carouselLabel": "Featured projects",
-    "carouselPrev": "Previous project",
-    "carouselNext": "Next project",
+    "carouselLabel": "Our products and featured projects",
+    "carouselPrev": "Previous",
+    "carouselNext": "Next",
     "carouselPause": "Pause automatic rotation",
     "carouselPlay": "Start automatic rotation",
     "carouselSlide": "{current} of {total}: {name}",
-    "carouselGoTo": "Show {name}"
+    "carouselGoTo": "Show {name}",
+    "viewApp": "View app"
   },
   "Cta": {
     "title": "Have an idea or a process to digitize?",
@@ -121,7 +124,8 @@
     "emailButton": "Send an email",
     "emailSubject": "Project with Jazzy Code",
     "otherTitle": "Elsewhere",
-    "newTab": "(opens in a new tab)"
+    "newTab": "(opens in a new tab)",
+    "followTitle": "Follow Jazzy Code"
   },
   "Profile": {
     "metaTitle": "Profile",
@@ -181,5 +185,39 @@
     "title": "Page not found",
     "description": "This page doesn't exist or isn't available yet.",
     "back": "Back to home"
+  },
+  "Apps": {
+    "metaTitle": "Apps",
+    "metaDescription": "Apps made by Jazzy Code: Scary Split to split shared expenses and Chill PDF to edit PDF files in your browser.",
+    "eyebrow": "Made by Jazzy Code",
+    "titleStart": "Our own",
+    "titleHighlight": "apps",
+    "description": "Products we design and build ourselves. Watch how they work and try them on desktop, tablet or phone.",
+    "open": "Open {name}",
+    "howLink": "See how it works",
+    "watchTitle": "Watch it in action",
+    "watchText": "A short walkthrough of {name}, narrated in Spanish, with subtitles.",
+    "play": "Play the {name} video ({duration})",
+    "videoLabel": "{name} walkthrough",
+    "subtitlesEn": "English",
+    "subtitlesEs": "Spanish",
+    "howTitle": "How it works",
+    "featuresTitle": "What you can do",
+    "devices": "Available on",
+    "desktop": "Desktop",
+    "tablet": "Tablet",
+    "phone": "Phone",
+    "technologies": "Built with",
+    "ctaTitle": "Try {name}",
+    "ctaText": "It is live and ready to use.",
+    "more": "Also from Jazzy Code",
+    "moreLink": "Discover {name}",
+    "back": "All apps",
+    "teaserTitle": "Our products",
+    "teaserText": "Besides building for clients, we design and build our own apps.",
+    "teaserLink": "Explore our apps",
+    "newTab": "(opens in a new tab)",
+    "pauseShowcase": "Pause the {name} animation",
+    "playShowcase": "Play the {name} animation"
   }
 }

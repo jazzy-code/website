@@ -88,6 +88,17 @@ columns right; add a link group by adding a `<div>` in the columns grid), `logo-
 (client; on the home page it scrolls to top instead of navigating), `language-switcher`,
 `mobile-menu` (Sheet). `wordmark.tsx` is **unused**.
 
+## Apps pages
+
+`/apps` and `/apps/<slug>` look like product launches, unlike the project catalog: each app
+has a dark "stage" in its own colors (`stageBackground`, inline because they come from
+data) while type, layout and light bands stay Jazzy Code. Pieces: `app-bits` (logo tile,
+open button, device badges), `app-devices` (one framed capture),
+`app-showreel` (client; 15 s CSS loop: both devices, phone close up, computer forward; pausable,
+still under reduced motion), `app-video` (client; loads the
+video only on play), `app-steps` (client; pinned device on `lg`, one capture per step below),
+`apps-teaser` (home "Our products" banners; apps also lead the hero carousel). Extra CSS: `.aurora` (drifting clouds) and `.shimmer` (headline).
+
 ## Responsive notes
 
 - Mobile-first. The hero carousel slide is `min(80vw, 44rem)`; side slides peek in.

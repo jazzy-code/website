@@ -1,9 +1,10 @@
 import { ArrowUpRightIcon, MailIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { siGithub } from "simple-icons";
+import { siFacebook, siGithub, siInstagram } from "simple-icons";
 import { Container } from "@/components/site/container";
 import { PageHero } from "@/components/site/page-hero";
 import { Reveal } from "@/components/site/reveal";
@@ -29,6 +30,10 @@ export default async function ContactPage({
   setRequestLocale(locale);
   const t = await getTranslations("Contact");
 
+  const follow = [
+    { label: "Instagram", href: siteConfig.follow.instagram, icon: siInstagram },
+    { label: "Facebook", href: siteConfig.follow.facebook, icon: siFacebook },
+  ];
   const others = [
     { label: "LinkedIn", href: siteConfig.social.linkedin, icon: null },
     { label: "GitHub", href: siteConfig.social.github, icon: siGithub },
@@ -89,45 +94,52 @@ export default async function ContactPage({
             delay={120}
             className="rounded-[2rem] bg-[linear-gradient(155deg,#ece3f8_0%,#ffffff_75%)] p-8 sm:p-10 lg:self-start"
           >
-            <h2 className="font-display text-2xl font-semibold">
-              {t("otherTitle")}
-            </h2>
-            <ul className="mt-6 grid gap-3">
-              {others.map(({ label, href, icon }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-                  >
-                    {icon ? (
-                      <svg
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                        className="size-6 shrink-0"
-                        fill={`#${icon.hex}`}
+            {[
+              { title: t("followTitle"), links: follow },
+              { title: t("otherTitle"), links: others },
+            ].map(({ title, links }) => (
+              <Fragment key={title}>
+                <h2 className="font-display text-2xl font-semibold not-first:mt-10">
+                  {title}
+                </h2>
+                <ul className="mt-6 grid gap-3">
+                  {links.map(({ label, href, icon }) => (
+                    <li key={label}>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm transition-transform duration-300 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                       >
-                        <path d={icon.path} />
-                      </svg>
-                    ) : (
-                      <span
-                        aria-hidden="true"
-                        className="flex size-6 shrink-0 items-center justify-center rounded-md bg-[#0a66c2] text-xs font-bold text-white"
-                      >
-                        in
-                      </span>
-                    )}
-                    <span className="flex-1 text-lg font-medium">{label}</span>
-                    <ArrowUpRightIcon
-                      aria-hidden="true"
-                      className="size-4 text-brand-soft"
-                    />
-                    <span className="sr-only">{t("newTab")}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+                        {icon ? (
+                          <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            className="size-6 shrink-0"
+                            fill={`#${icon.hex}`}
+                          >
+                            <path d={icon.path} />
+                          </svg>
+                        ) : (
+                          <span
+                            aria-hidden="true"
+                            className="flex size-6 shrink-0 items-center justify-center rounded-md bg-[#0a66c2] text-xs font-bold text-white"
+                          >
+                            in
+                          </span>
+                        )}
+                        <span className="flex-1 text-lg font-medium">{label}</span>
+                        <ArrowUpRightIcon
+                          aria-hidden="true"
+                          className="size-4 text-brand-soft"
+                        />
+                        <span className="sr-only">{t("newTab")}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </Fragment>
+            ))}
           </Reveal>
         </Container>
       </Section>
